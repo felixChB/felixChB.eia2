@@ -1,0 +1,15 @@
+header{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 5px;
+    height: 40px;
+    width: 100px;
+    background-color: blue
+}
+#play{
+    background-color: orange;
+    color: black;
+    border: solid black 2px;
+}
