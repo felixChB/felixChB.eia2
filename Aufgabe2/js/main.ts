@@ -1,3 +1,12 @@
+/*
+Aufgabe: Aufgabe 2: Mau Mau
+Name: Felix Brunn
+Matrikel: 260550
+Datum: 06.04.2019
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
+
 interface Karten {
     zahl: string;
     symbol: string;
@@ -172,7 +181,7 @@ let player1Hand: Karten[] = [];
 let player2Hand: Karten[] = [];
 let player3Hand: Karten[] = [];
 let ablagestapel: Karten;
-let randomCount:number;
+let randomCount: number;
 
 //Aufruf beim Laden der Seite
 document.addEventListener('DOMContentLoaded', init);
@@ -185,10 +194,11 @@ function init(): void {
 function playGame(): void {
     //Handkarten auf 0 setzen
     yourHand = [];
+    //Ziehstapel auffüllen
+    ziehStapel = allCards;
+
     document.getElementById("yourHand").innerHTML = "";
     let anfangsHandkarten: number = parseInt(prompt("Anzahl der Handkarten eingeben", "..."), 10);
-    //ziehStapel auffüllen
-    ziehStapel = allCards;
     kartenZiehen(anfangsHandkarten);
     writeStapel();
     //Test
@@ -227,7 +237,7 @@ function writeHtml(_handKarte: Karten): void {
 }
 
 //Ziehstapel und Ablagestapel als HTML
-function writeStapel():void{
+function writeStapel(): void {
     randomCount = Math.floor(Math.random() * ziehStapel.length);
     ablagestapel = ziehStapel[randomCount];
     ziehStapel.splice(randomCount, 1)
