@@ -1,23 +1,86 @@
 html{
-    background-color: white;
+    background-color: brown;
 }
 header{
     position: absolute;
-    top: 40%;
+    top: 0;
+    right: 0;
     margin: 0;
     padding: 5px;
-    height: 10rem;
+    height: 5rem;
     width: 100%;
-    background-color: red;
+    background-color: burlywood;
     text-align: center;
+    border-bottom: solid black 6px;
 }
 #play{
     position: absolute;
-    top: 40%;
-    background-color: red;
-    color: white;
-    border: solid white 10px;
+    top: 10px;
+    right: 10px;
+    background-color: burlywood;
+    color: black;
+    border: solid black 6px;
     font-size: 4rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
+    font-family: 'Bitter', serif;
+    cursor: pointer;
+}
+header span{
+    font-size: 4.5rem;
+    font-family: 'Bitter', serif;
+}
+main{
+    margin-top: 6rem;
+}
+.Handkarte{
+    background-color: white;
+    display: inline-block;
+    border: solid black 2px;
+    width: 8rem;
+    height: 12rem;
+    margin: 5px 10px 5px 10px;
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+}
+/*Rote Handkarte färben */
+.red{
+    color: red;
+}
+/*Schwarze Handkarte färben */
+.black{
+    color: black;
+}
+#yourHand{
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 10%;
+    background-color: rgb(180, 45, 45);
+    border: solid black 5px;
+    width: 80%;
+    height: 15rem;
+    overflow: auto;
+}
+#stapel{
+    background-color: rgb(180, 45, 45);
+    border: solid black 5px;
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    height: 15rem;
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#HKAnzahl{
+    position: fixed;
+    bottom: 17rem;
+    right:10%;
+    background-color: white;
+    color: black;
+    font-family: 'Bitter', serif;
+    border: solid black 3px;
+    font-size: 1rem;
+    padding: 5px 7px 5px 7px;
 }
