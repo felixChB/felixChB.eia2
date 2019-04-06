@@ -1,3 +1,11 @@
+/*
+Aufgabe: Aufgabe 2: Mau Mau
+Name: Felix Brunn
+Matrikel: 260550
+Datum: 06.04.2019
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 let karo7 = {
     zahl: "7",
     symbol: "Karo",
@@ -175,10 +183,10 @@ function init() {
 function playGame() {
     //Handkarten auf 0 setzen
     yourHand = [];
+    //Ziehstapel auffüllen
+    ziehStapel = [karo7, karo8, karo9, karo10, karoBube, karoDame, karoKoenig, karoAss, herz7, herz8, herz9, herz10, herzBube, herzDame, herzKoenig, herzAss, pik7, pik8, pik9, pik10, pikBube, pikDame, pikKoenig, pikAss, kreuz7, kreuz8, kreuz9, kreuz10, kreuzBube, kreuzDame, kreuzKoenig, kreuzAss];
     document.getElementById("yourHand").innerHTML = "";
     let anfangsHandkarten = parseInt(prompt("Anzahl der Handkarten eingeben", "..."), 10);
-    //ziehStapel auffüllen
-    ziehStapel = allCards;
     kartenZiehen(anfangsHandkarten);
     writeStapel();
     //Test
@@ -220,5 +228,7 @@ function writeStapel() {
     ablagestapel = ziehStapel[randomCount];
     ziehStapel.splice(randomCount, 1);
     document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte"><p>Ablagestapel:</p><p>${ablagestapel.symbol}</p><p>${ablagestapel.zahl}</p></div><div class="Handkarte"><p>Ziehstapel:</p><p>${ziehStapel.length}</p></div></div>`;
+    //Test
+    console.log(ziehStapel);
 }
 //# sourceMappingURL=main.js.map
