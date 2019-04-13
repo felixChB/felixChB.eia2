@@ -10,178 +10,175 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 interface Karten {
     zahl: string;
     symbol: string;
-    img: string;
+    num: number;
 }
 
 let karo7: Karten = {
     zahl: "7",
     symbol: "Karo",
-    img: ""
+    num: 1
 }
 let herz7: Karten = {
     zahl: "7",
     symbol: "Herz",
-    img: ""
+    num: 2
 }
 let pik7: Karten = {
     zahl: "7",
     symbol: "Pik",
-    img: ""
+    num: 3
 }
 let kreuz7: Karten = {
     zahl: "7",
     symbol: "Kreuz",
-    img: ""
+    num: 4
 }
 let karo8: Karten = {
     zahl: "8",
     symbol: "Karo",
-    img: ""
+    num: 5
 }
 let herz8: Karten = {
     zahl: "8",
     symbol: "Herz",
-    img: ""
+    num: 6
 }
 let pik8: Karten = {
     zahl: "8",
     symbol: "Pik",
-    img: ""
+    num: 7
 }
 let kreuz8: Karten = {
     zahl: "8",
     symbol: "Kreuz",
-    img: ""
+    num: 8
 }
 let karo9: Karten = {
     zahl: "9",
     symbol: "Karo",
-    img: ""
+    num: 9
 }
 let herz9: Karten = {
     zahl: "9",
     symbol: "Herz",
-    img: ""
+    num: 10
 }
 let pik9: Karten = {
     zahl: "9",
     symbol: "Pik",
-    img: ""
+    num: 11
 }
 let kreuz9: Karten = {
     zahl: "9",
     symbol: "Kreuz",
-    img: ""
+    num: 12
 }
 let karo10: Karten = {
     zahl: "10",
     symbol: "Karo",
-    img: ""
+    num: 13
 }
 let herz10: Karten = {
     zahl: "10",
     symbol: "Herz",
-    img: ""
+    num: 14
 }
 let pik10: Karten = {
     zahl: "10",
     symbol: "Pik",
-    img: ""
+    num: 15
 }
 let kreuz10: Karten = {
     zahl: "10",
     symbol: "Kreuz",
-    img: ""
+    num: 16
 }
 let karoBube: Karten = {
     zahl: "Bube",
     symbol: "Karo",
-    img: ""
+    num: 17
 }
 let herzBube: Karten = {
     zahl: "Bube",
     symbol: "Herz",
-    img: ""
+    num: 18
 }
 let pikBube: Karten = {
     zahl: "Bube",
     symbol: "Pik",
-    img: ""
+    num: 19
 }
 let kreuzBube: Karten = {
     zahl: "Bube",
     symbol: "Kreuz",
-    img: ""
+    num: 20
 }
 let karoDame: Karten = {
     zahl: "Dame",
     symbol: "Karo",
-    img: ""
+    num: 21
 }
 let herzDame: Karten = {
     zahl: "Dame",
     symbol: "Herz",
-    img: ""
+    num: 22
 }
 let pikDame: Karten = {
     zahl: "Dame",
     symbol: "Pik",
-    img: ""
+    num: 23
 }
 let kreuzDame: Karten = {
     zahl: "Dame",
     symbol: "Kreuz",
-    img: ""
+    num: 24
 }
 let karoKoenig: Karten = {
     zahl: "Koenig",
     symbol: "Karo",
-    img: ""
+    num: 25
 }
 let herzKoenig: Karten = {
     zahl: "Koenig",
     symbol: "Herz",
-    img: ""
+    num: 26
 }
 let pikKoenig: Karten = {
     zahl: "Koenig",
     symbol: "Pik",
-    img: ""
+    num: 27
 }
 let kreuzKoenig: Karten = {
     zahl: "Koenig",
     symbol: "Kreuz",
-    img: ""
+    num: 28
 }
 let karoAss: Karten = {
     zahl: "Ass",
     symbol: "Karo",
-    img: ""
+    num: 29
 }
 let herzAss: Karten = {
     zahl: "Ass",
     symbol: "Herz",
-    img: ""
+    num: 30
 }
 let pikAss: Karten = {
     zahl: "Ass",
     symbol: "Pik",
-    img: ""
+    num: 31
 }
 let kreuzAss: Karten = {
     zahl: "Ass",
     symbol: "Kreuz",
-    img: ""
+    num: 32
 }
 
 let allCards: Karten[] = [karo7, karo8, karo9, karo10, karoBube, karoDame, karoKoenig, karoAss, herz7, herz8, herz9, herz10, herzBube, herzDame, herzKoenig, herzAss, pik7, pik8, pik9, pik10, pikBube, pikDame, pikKoenig, pikAss, kreuz7, kreuz8, kreuz9, kreuz10, kreuzBube, kreuzDame, kreuzKoenig, kreuzAss];
 let ziehStapel: Karten[] = [];
 let yourHand: Karten[] = [];
-let player1Hand: Karten[] = [];
-let player2Hand: Karten[] = [];
-let player3Hand: Karten[] = [];
 let ablagestapel: Karten;
-let randomCount: number;
+let abgelegteKarten: Karten[] = [];
 
 //Aufruf beim Laden der Seite
 document.addEventListener('DOMContentLoaded', init);
@@ -198,32 +195,57 @@ function playGame(): void {
     ziehStapel = [karo7, karo8, karo9, karo10, karoBube, karoDame, karoKoenig, karoAss, herz7, herz8, herz9, herz10, herzBube, herzDame, herzKoenig, herzAss, pik7, pik8, pik9, pik10, pikBube, pikDame, pikKoenig, pikAss, kreuz7, kreuz8, kreuz9, kreuz10, kreuzBube, kreuzDame, kreuzKoenig, kreuzAss];
 
     document.getElementById("yourHand").innerHTML = "";
-    let anfangsHandkarten: number = parseInt(prompt("Anzahl der Handkarten eingeben", "zwischen 1 und 31"), 10);
-    if (isNaN(anfangsHandkarten) || anfangsHandkarten < 1 || anfangsHandkarten > 31) {
-        alert("Eingabe falsch. Erneut versuchen!");
-        location.reload();
+    let anfangsHandkarten: number = parseInt(prompt("Anzahl der Handkarten eingeben", "zwischen 2 und 8"), 10);
+    if (isNaN(anfangsHandkarten) == true || anfangsHandkarten < 2 || anfangsHandkarten > 8) {
+        playGame()
     }
     else {
-        kartenZiehen(anfangsHandkarten);
+        kartenAusteilen(anfangsHandkarten);
         writeStapel();
     }
+
+    //Eventlistener:
+    document.getElementById("ziehstapel").addEventListener("click", karteZiehen);
+    document.getElementById("sort").addEventListener("click", handSortieren);
+    document.getElementById("yourHand").addEventListener("click", karteAblegen)
+    window.addEventListener("keydown", leertastePruefen);
+
     //Test
     console.log(anfangsHandkarten)
 }
 
 //zufällige Karte ziehen
-function kartenZiehen(anzahlKarten: number): void {
+function kartenAusteilen(anzahlKarten: number): void {
     for (let i: number = 0; i < anzahlKarten; i++) {
-        randomCount = Math.floor(Math.random() * ziehStapel.length);
+        let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
         yourHand.push(ziehStapel[randomCount])
         ziehStapel.splice(randomCount, 1)
-        //Test
-        console.log(yourHand[i])
         writeHtml(yourHand[i]);
+        //Test
+        console.log("Handkarten")
+        console.log(yourHand)
+        console.log("Ziehstapel")
+        console.log(ziehStapel)
+        console.log(ziehStapel.length)
     }
-    //Test
-    console.log(yourHand)
-    console.log(ziehStapel)
+}
+
+function karteZiehen(): void {
+    if (ziehStapel.length > 0) {
+        let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
+        yourHand.push(ziehStapel[randomCount]);
+        ziehStapel.splice(randomCount, 1);
+        writeHtml(yourHand[yourHand.length - 1])
+        //Test
+        console.log('random Number: ' + randomCount);
+        console.log("Handkarten")
+        console.log(yourHand)
+        console.log("Ziehstapel")
+        console.log(ziehStapel)
+        console.log(ziehStapel.length)
+    } else {
+        alert("Ziehstapel ist leer!");
+    }
 }
 
 //Funktion zum Schreiben des HTML-Codes
@@ -239,16 +261,52 @@ function writeHtml(_handKarte: Karten): void {
     } else {
         document.getElementById("yourHand").innerHTML += `<div class="Handkarte black"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
     }
-    document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`
+    document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`;
 }
 
 //Ziehstapel und Ablagestapel als HTML
 function writeStapel(): void {
-    randomCount = Math.floor(Math.random() * ziehStapel.length);
+    let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
     ablagestapel = ziehStapel[randomCount];
     ziehStapel.splice(randomCount, 1)
 
-    document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte"><p>Ablagestapel:</p><p>${ablagestapel.symbol}</p><p>${ablagestapel.zahl}</p></div><div class="Handkarte"><p>Ziehstapel:</p><p>${ziehStapel.length}</p></div></div>`;
+    document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte"><p>Ablagestapel:</p><p>${ablagestapel.symbol}</p><p>${ablagestapel.zahl}</p></div><div class="Handkarte" id="ziehstapel"><p>Ziehstapel:</p><p>${ziehStapel.length}</p></div></div>`;
     //Test
+    console.log("Ziehstapel")
     console.log(ziehStapel)
+}
+
+function karteAblegen(): void {
+    document.getElementById("yourHand").innerHTML = "";
+    let targetCard: HTMLElement = <HTMLElement>event.target;
+    for (let i: number = 0; i < yourHand.length; i++) {
+        if (yourHand[i].num == parseInt(targetCard.getAttribute("id"), 10)) {
+            abgelegteKarten.push(ablagestapel);
+            ablagestapel = yourHand[i];
+            yourHand.splice(i, 1);
+            console.log(yourHand.length);
+            console.log(ablagestapel);
+        }
+    }
+    for (let i: number = 0; i < yourHand.length; i++) {
+        writeHtml(yourHand[i]);
+    }
+    //document.getElementById("yourHand").innerHTML -= `<div class="Handkarte red"><p>${_targetCard.symbol}</p><p>${_targetCard.zahl}</p></div>`;
+    //document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`;
+}
+
+function handSortieren(): void {
+    document.getElementById("yourHand").innerHTML = "";
+    yourHand.sort(function sortieren(_a: Karten, _b: Karten) {
+        return _a.num - _b.num;
+    });
+    for (let i: number = 0; i < yourHand.length; i++) {
+        writeHtml(yourHand[i]);
+    }
+}
+
+function leertastePruefen(event: KeyboardEvent): void {
+    if (event.keyCode == 32) {
+        karteZiehen();
+    }
 }

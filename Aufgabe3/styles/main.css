@@ -93,3 +93,15 @@ main{
     font-size: 1rem;
     padding: 5px 7px 5px 7px;
 }
+#sort{
+    position: fixed;
+    bottom: 17rem;
+    left:10%;
+    background-color: white;
+    color: black;
+    font-family: 'Bitter', serif;
+    border: solid black 3px;
+    font-size: 1rem;
+    padding: 5px 7px 5px 7px;
+    cursor: pointer;
+}
