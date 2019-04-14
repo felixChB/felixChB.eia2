@@ -203,7 +203,8 @@ function playGame(): void {
         kartenAusteilen(anfangsHandkarten);
         let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
         ablagestapel = ziehStapel[randomCount];
-        ziehStapel.splice(randomCount, 1)
+        ziehStapel.splice(randomCount, 1);
+        document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte" id="ablagestapel"></div><div class="Handkarte" id="ziehstapel"></div></div>`;
         writeStapel();
     }
 
@@ -261,9 +262,9 @@ function writeHtml(_handKarte: Karten): void {
     */
     //Handkarten als HTML
     if (_handKarte.symbol == "Karo" || _handKarte.symbol == "Herz") {
-        document.getElementById("yourHand").innerHTML += `<div class="Handkarte red" id="${_handKarte.num}"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
+        document.getElementById("yourHand").innerHTML += `<div class="Handkarte red" id="${_handKarte.num}"><br>${_handKarte.symbol}<br><br>${_handKarte.zahl}</div>`;
     } else {
-        document.getElementById("yourHand").innerHTML += `<div class="Handkarte black" id="${_handKarte.num}"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
+        document.getElementById("yourHand").innerHTML += `<div class="Handkarte black" id="${_handKarte.num}"><br>${_handKarte.symbol}<br><br>${_handKarte.zahl}</div>`;
     }
     if (yourHand.length == 0){
         document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: 0</span>`;
@@ -274,8 +275,9 @@ function writeHtml(_handKarte: Karten): void {
 
 //Ziehstapel und Ablagestapel als HTML
 function writeStapel(): void {
-    document.getElementById("stapel").innerHTML = "";
-    document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte"><p>Ablagestapel:</p><p>${ablagestapel.symbol}</p><p>${ablagestapel.zahl}</p></div><div class="Handkarte" id="ziehstapel"><p>Ziehstapel:</p><p>${ziehStapel.length}</p></div></div>`;
+    //document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte" id="ablagestapel"></div><div class="Handkarte" id="ziehstapel"><p>Ziehstapel</p></div></div>`;
+    document.getElementById("ablagestapel").innerHTML = `Ablagestapel:<br><br>${ablagestapel.symbol}<br><br>${ablagestapel.zahl}`;
+    document.getElementById("ziehstapel").innerHTML = `Ziehstapel:<br><br>${ziehStapel.length}`;
     //Test
     console.log("Ziehstapel")
     console.log(ziehStapel)
@@ -295,6 +297,8 @@ function karteAblegen(event: Event): void {
             console.log(yourHand.length);
             console.log(ablagestapel);
             writeStapel();
+            //Test
+            console.log(abgelegteKarten);
         }
     }
     for (let i: number = 0; i < yourHand.length; i++) {
