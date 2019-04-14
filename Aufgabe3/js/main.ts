@@ -201,6 +201,9 @@ function playGame(): void {
     }
     else {
         kartenAusteilen(anfangsHandkarten);
+        let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
+        ablagestapel = ziehStapel[randomCount];
+        ziehStapel.splice(randomCount, 1)
         writeStapel();
     }
 
@@ -236,6 +239,7 @@ function karteZiehen(): void {
         yourHand.push(ziehStapel[randomCount]);
         ziehStapel.splice(randomCount, 1);
         writeHtml(yourHand[yourHand.length - 1])
+        writeStapel();
         //Test
         console.log('random Number: ' + randomCount);
         console.log("Handkarten")
@@ -257,28 +261,32 @@ function writeHtml(_handKarte: Karten): void {
     */
     //Handkarten als HTML
     if (_handKarte.symbol == "Karo" || _handKarte.symbol == "Herz") {
-        document.getElementById("yourHand").innerHTML += `<div class="Handkarte red"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
+        document.getElementById("yourHand").innerHTML += `<div class="Handkarte red" id="${_handKarte.num}"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
     } else {
-        document.getElementById("yourHand").innerHTML += `<div class="Handkarte black"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
+        document.getElementById("yourHand").innerHTML += `<div class="Handkarte black" id="${_handKarte.num}"><p>${_handKarte.symbol}</p><p>${_handKarte.zahl}</p></div>`;
     }
-    document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`;
+    if (yourHand.length == 0){
+        document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: 0</span>`;
+    } else {
+        document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`;
+    }
 }
 
 //Ziehstapel und Ablagestapel als HTML
 function writeStapel(): void {
-    let randomCount: number = Math.floor(Math.random() * ziehStapel.length);
-    ablagestapel = ziehStapel[randomCount];
-    ziehStapel.splice(randomCount, 1)
-
+    document.getElementById("stapel").innerHTML = "";
     document.getElementById("stapel").innerHTML = `<div id="stapel"><div class="Handkarte"><p>Ablagestapel:</p><p>${ablagestapel.symbol}</p><p>${ablagestapel.zahl}</p></div><div class="Handkarte" id="ziehstapel"><p>Ziehstapel:</p><p>${ziehStapel.length}</p></div></div>`;
     //Test
     console.log("Ziehstapel")
     console.log(ziehStapel)
 }
 
-function karteAblegen(): void {
+function karteAblegen(event: Event): void {
+    console.log("Karte ausspielen");
+    console.log(event.target);
     document.getElementById("yourHand").innerHTML = "";
     let targetCard: HTMLElement = <HTMLElement>event.target;
+    console.log(targetCard);
     for (let i: number = 0; i < yourHand.length; i++) {
         if (yourHand[i].num == parseInt(targetCard.getAttribute("id"), 10)) {
             abgelegteKarten.push(ablagestapel);
@@ -286,14 +294,14 @@ function karteAblegen(): void {
             yourHand.splice(i, 1);
             console.log(yourHand.length);
             console.log(ablagestapel);
+            writeStapel();
         }
     }
     for (let i: number = 0; i < yourHand.length; i++) {
         writeHtml(yourHand[i]);
     }
-    //document.getElementById("yourHand").innerHTML -= `<div class="Handkarte red"><p>${_targetCard.symbol}</p><p>${_targetCard.zahl}</p></div>`;
-    //document.getElementById("HKAnzahl").innerHTML = `<span id="HKAnzahl">Handkarten: ${yourHand.length}</span>`;
 }
+
 
 function handSortieren(): void {
     document.getElementById("yourHand").innerHTML = "";
