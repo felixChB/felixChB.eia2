@@ -6,3 +6,54 @@ Datum: 18.04.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: aqua;
+    text-align: center;
+    font-size: 2.5rem;
+}
+#gridbox{
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+html{
+    background-color: white;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+fieldset span{
+    margin: 5px 5px 5px 5px;
+    float: left;
+}
+#adresse span{
+    float: none;
+}
+fieldset p{
+    font-size: 1.2rem;
+    margin: 10px 3px 10px 3px;
+}
+#zsmn{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 4rem;
+    background-color: rgb(243, 102, 149);
+}
+
+
+
+
+
+@media only screen and (max-width: 1000px){
+    #gridbox{
+        grid-template-columns: 1fr;
+    }
+    #zsmn{
+        width: 100%;
+    }
+}
