@@ -47,7 +47,7 @@ function handleChange(_event: Event): void {
                 document.getElementById("lo").appendChild(ziel);
             }
         }
-        if ((allBoxes[i].name == "Schoko" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Vanille" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Himmelblau" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Mango" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Cookies" && Number(allBoxes[i].value) > 0)) {
+        if ((allBoxes[i].name == "Schoko" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Vanille" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Himmelblau" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Mango" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Cookies" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Stracciatella" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Haselnuss" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Zitrone" && Number(allBoxes[i].value) > 0)) {
             price = Number(allBoxes[i].value);
             sum += price;
             console.log(sum);
@@ -67,7 +67,7 @@ function bestellungPrüfen(): void {
     let eischecked: number = 0;
     let lochecked: number = 0;
     let adchecked: number = 0;
-    for (let i: number = 0; i < 5; i++) {
+    for (let i: number = 0; i < 8; i++) {
         if (Number(allBoxes[i].value) > 0) {
             eischecked = 1;
             console.log(eischecked);
@@ -76,12 +76,12 @@ function bestellungPrüfen(): void {
     if (eischecked == 0) {
         missing += "Sorte, ";
     }
-    if (allBoxes[8].checked == false && allBoxes[9].checked == false) {
+    if (allBoxes[11].checked == false && allBoxes[12].checked == false) {
         missing += "Darreichungsform, ";
         console.log(allBoxes[5].checked);
         console.log(allBoxes[6].checked);
     }
-    for (let i: number = 10; i < 13; i++) {
+    for (let i: number = 13; i < 16; i++) {
         if (allBoxes[i].checked == true) {
             lochecked = 1;
         }
@@ -89,7 +89,7 @@ function bestellungPrüfen(): void {
     if (lochecked == 0) {
         missing += "Lieferoption, ";
     }
-    for (let i: number = 13; i < 17; i++) {
+    for (let i: number = 16; i < 20; i++) {
         if (allBoxes[i].value == "") {
             adchecked++;
         }

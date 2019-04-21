@@ -11,7 +11,7 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    height: 5;
+    height: 5rem;
     background-color: aqua;
     text-align: center;
     font-size: 2.5rem;
@@ -74,6 +74,7 @@ button{
     #gridbox{
         grid-template-columns: 1fr;
         margin-bottom: 8rem;
+        margin-top: 3rem;
     }
     #zsmn{
         height: 8rem;
@@ -83,5 +84,9 @@ button{
         width: 70%;
         margin-right: 15%;
         margin-left: 15%;
+    }
+    header{
+        height: 3rem;
+        font-size: 2rem;
     }
 }
