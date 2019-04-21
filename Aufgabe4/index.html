@@ -29,57 +29,69 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
             <div>
                 <fieldset id="sorten">
                     <p>Eissorten: (1 Kugel = 1€)</p>
-                    <span><input type="number" name="Stepper" step="1" min="0" max="10" value="0" /> Schoko</span>
-                    <span><input type="number" name="Stepper" step="1" min="0" max="10" value="0" /> Vanille</span>
-                    <span><input type="number" name="Stepper" step="1" min="0" max="10" value="0" /> Himmelblau</span>
-                    <span><input type="number" name="Stepper" step="1" min="0" max="10" value="0" /> Mango</span>
-                    <span><input type="number" name="Stepper" step="1" min="0" max="10" value="0" /> Cookies</span>
+                    <span><input type="number" name="Schoko" step="1" min="0" max="4" value="0" />
+                        Schoko</span>
+                    <span><input type="number" name="Vanille" step="1" min="0" max="4" value="0" />
+                        Vanille</span>
+                    <span><input type="number" name="Himmelblau" step="1" min="0" max="4" value="0" />
+                        Himmelblau</span>
+                    <span><input type="number" name="Mango" step="1" min="0" max="4" value="0" />
+                        Mango</span>
+                    <span><input type="number" name="Cookies" step="1" min="0" max="4" value="0" />
+                        Cookies</span>
                 </fieldset>
                 <fieldset id="extras">
                     <p>Extras: (1 Extra = 0,20€)</p>
-                    <span><input type="checkbox" name="Checkbox1" value="check1" id="check1" />
-                        <label for="check1">Sahne</label></span>
-                    <span><input type="checkbox" name="Checkbox2" value="check2" id="check2" />
-                        <label for="check2">Schoko-Streusel</label></span>
-                    <span><input type="checkbox" name="Checkbox3" value="check3" id="check3" />
-                        <label for="check3">Bunte Streusel</label></span>
+                    <span><input type="checkbox" name="Checkbox1" value="0.2" id="Sahne" />
+                        <label for="Sahne">Sahne</label></span>
+                    <span><input type="checkbox" name="Checkbox2" value="0.2" id="Schoko-Streusel" />
+                        <label for="Schoko-Streusel">Schoko-Streusel</label></span>
+                    <span><input type="checkbox" name="Checkbox3" value="0.2" id="Bunte Streusel" />
+                        <label for="Bunte Streusel">Bunte Streusel</label></span>
 
                 </fieldset>
-                <fieldset id="wob">
-                    <span><input type="radio" name="Radiogroup1" value="radio1" id="radio1" />
-                        <label for="radio1">Waffel</label></span>
-                    <span><input type="radio" name="Radiogroup1" value="radio2" id="radio2" />
-                        <label for="radio2">Becher</label></span>
+                <fieldset id="waffelOderBecher">
+                    <span><input type="radio" name="Radiogroup1" value="0" id="Waffel" />
+                        <label for="Waffel">Waffel</label></span>
+                    <span><input type="radio" name="Radiogroup1" value="0" id="Becher" />
+                        <label for="Becher">Becher</label></span>
 
                 </fieldset>
                 <fieldset id="lieferoption">
                     <p>Lieferoptionen:</p>
-                    <span><input type="radio" name="Radiogroup2" value="radio3" id="radio3" />
-                        <label for="radio3">Standard-Versandt</label></span>
-                    <span><input type="radio" name="Radiogroup2" value="radio4" id="radio4" />
-                        <label for="radio4">Epress-Versandt</label></span>
-                    <span><input type="radio" name="Radiogroup2" value="radio5" id="radio5" />
-                        <label for="radio5">Selbst abholen</label></span>
+                    <span><input type="radio" name="Radiogroup2" value="1" id="Standard-Versandt" />
+                        <label for="Standard-Versandt">Standard-Versandt(+1€)</label></span>
+                    <span><input type="radio" name="Radiogroup2" value="2" id="Express-Versandt" />
+                        <label for="Express-Versandt">Express-Versandt(+2€)</label></span>
+                    <span><input type="radio" name="Radiogroup2" value="0" id="Selbst abholen" />
+                        <label for="Selbst abholen">Selbst abholen</label></span>
 
                 </fieldset>
             </div>
             <div>
                 <fieldset id="adresse">
                     <p>Adressdaten</p>
-                    <span>Straße <input type="text" name="Text" placeholder="Musterstraße" required /></span>
+                    <span>Straße <input type="text" name="Text" placeholder="Musterstraße" value="0" required /></span>
                     <br>
-                    <span>Hausnummer <input type="text" pattern="[0-9]{2}" name="number" placeholder="00000"
+                    <span>Hausnummer <input type="text" pattern="[0-9]{2}" name="number" placeholder="00000" value="0"
                             required /></span>
                     <hr>
-                    <span>Stadt <input type="text" name="Text" placeholder="Musterstadt" required /></span>
+                    <span>Stadt <input type="text" name="Text" placeholder="Musterstadt" id="city" required /></span>
                     <br>
-                    <span>Postleitzahl <input type="text" pattern="[0-9]{5}" name="number" placeholder="00000"
+                    <span>Postleitzahl <input type="text" pattern="[0-9]{5}" name="number" placeholder="00000" value="0"
                             required /></span>
                 </fieldset>
-                <button>Bestellung prüfen</button>
+                <button id="bp">Bestellung prüfen</button>
             </div>
         </div>
-        <div id="zsmn"></div>
+        <div id="zsmn">
+            <p id="price">Bestellzusammenfassung:   </p>
+            <span id="eis">Sorten: </span>
+            <span id="ex">Extras: </span>
+            <span id="wob"></span>
+            <span id="lo"></span>
+        </div>
+
     </main>
 
 </body>
