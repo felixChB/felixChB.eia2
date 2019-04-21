@@ -7,7 +7,6 @@ Datum: 18.04.2019
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
 window.addEventListener("load", init);
-document.getElementById("bp").addEventListener("click", bestellungPrüfen);
 function init(_event) {
     console.log("Init");
     let fieldsets = document.getElementsByTagName("fieldset");
@@ -15,12 +14,13 @@ function init(_event) {
         let fieldset = fieldsets[i];
         console.log(fieldset);
         fieldset.addEventListener("change", handleChange);
+        document.getElementById("bp").addEventListener("click", bestellungPrüfen);
     }
 }
 function handleChange(_event) {
+    let allBoxes = document.getElementsByTagName("input");
     let sum = 0;
     let price = 0;
-    let allBoxes = document.getElementsByTagName("input");
     document.getElementById("eis").innerHTML = "Sorten: ";
     document.getElementById("ex").innerHTML = "Extras: ";
     document.getElementById("wob").innerHTML = "";
@@ -47,7 +47,7 @@ function handleChange(_event) {
                 document.getElementById("lo").appendChild(ziel);
             }
         }
-        if (allBoxes[i].name == "Schoko" || allBoxes[i].name == "Vanille" || allBoxes[i].name == "Himmelblau" || allBoxes[i].name == "Mango" || allBoxes[i].name == "Cookies" && Number(allBoxes[i].value) > 0) {
+        if ((allBoxes[i].name == "Schoko" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Vanille" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Himmelblau" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Mango" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Cookies" && Number(allBoxes[i].value) > 0)) {
             price = Number(allBoxes[i].value);
             sum += price;
             console.log(sum);
@@ -59,6 +59,47 @@ function handleChange(_event) {
     }
 }
 function bestellungPrüfen() {
+    let allBoxes = document.getElementsByTagName("input");
     console.log("bp");
+    let missing = "";
+    let eischecked = 0;
+    let lochecked = 0;
+    let adchecked = 0;
+    for (let i = 0; i < 5; i++) {
+        if (Number(allBoxes[i].value) > 0) {
+            eischecked = 1;
+            console.log(eischecked);
+        }
+    }
+    if (eischecked == 0) {
+        missing += "Sorte, ";
+    }
+    if (allBoxes[8].checked == false && allBoxes[9].checked == false) {
+        missing += "Darreichungsform, ";
+        console.log(allBoxes[5].checked);
+        console.log(allBoxes[6].checked);
+    }
+    for (let i = 10; i < 13; i++) {
+        if (allBoxes[i].checked == true) {
+            lochecked = 1;
+        }
+    }
+    if (lochecked == 0) {
+        missing += "Lieferoption, ";
+    }
+    for (let i = 13; i < 17; i++) {
+        if (allBoxes[i].value == "") {
+            adchecked++;
+        }
+    }
+    if (adchecked > 0) {
+        missing += "Adressdaten, ";
+    }
+    if (missing == "") {
+        alert("Danke für Ihre Bestellung!");
+    }
+    else {
+        alert("Bitte noch folgendes angeben: " + missing);
+    }
 }
 //# sourceMappingURL=main.js.map
