@@ -22,11 +22,16 @@ namespace js_to_html {
         */
     }
 
+    let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
+    let legend: HTMLLegendElement = document.createElement("legend");
+
     function generateSite(_data: fieldsetboxes): void {
         console.log("generateSite")
         for (let kategorie in _data) {
             console.log("mme")
             let value: Boxen[] = _data[kategorie];
+            document.getElementById("wahl").appendChild(fieldset);
+            fieldset.appendChild(legend);
 
             for (let i: number = 0; i < value.length; i++)
                 displaySite(value[i]);
@@ -35,20 +40,40 @@ namespace js_to_html {
     }
 
     function displaySite(_box: Boxen): void {
-        let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
-        let legend: HTMLLegendElement = document.createElement("legend");
         legend.innerText = "eis";
         if (_box.type == "number") {
             let input: HTMLInputElement = document.createElement("input");
             fieldset.appendChild(input);
+            input.after(_box.name);
             input.setAttribute("name", _box.name);
+            input.setAttribute("type", _box.type);
+            input.setAttribute("id", _box.id);
             input.setAttribute("value", "0");
+            input.setAttribute("step", "1");
+            input.setAttribute("max", "4");
+            input.setAttribute("min", "0");
 
         } else if (_box.type == "checkbox") {
-
+            let input: HTMLInputElement = document.createElement("input");
+            let label: HTMLLabelElement = document.createElement("label");
+            fieldset.appendChild(input);
+            fieldset.appendChild(label);
+            label.innerText = _box.name;
+            label.setAttribute("for", _box.name);
+            input.setAttribute("type", _box.type);
+            input.setAttribute("id", _box.id);
+            input.setAttribute("name", _box.name);
+        } else if (_box.type == "radio") {
+            let input: HTMLInputElement = document.createElement("input");
+            let label: HTMLLabelElement = document.createElement("label");
+            fieldset.appendChild(input);
+            fieldset.appendChild(label);
+            label.innerText = _box.id;
+            label.setAttribute("for", _box.id);
+            input.setAttribute("type", _box.type);
+            input.setAttribute("id", _box.id);
+            input.setAttribute("name", _box.name);
         }
-        document.body.appendChild(fieldset);
-        fieldset.appendChild(legend);
     }
 
 
