@@ -11,7 +11,7 @@ namespace js_to_html {
 
     function init(_event: Event): void {
         generateSite(data);
-        /*
+        
         let fieldsets: HTMLCollectionOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
         for (let i: number = 0; i < fieldsets.length; i++) {
             let fieldset: HTMLFieldSetElement = fieldsets[i];
@@ -19,19 +19,24 @@ namespace js_to_html {
             fieldset.addEventListener("change", handleChange);
             document.getElementById("bp").addEventListener("click", bestellungPrüfen);
         }
-        */
+        
+        
     }
 
     let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
     let legend: HTMLLegendElement = document.createElement("legend");
 
     function generateSite(_data: fieldsetboxes): void {
-        console.log("generateSite")
+        console.log("generateSite");
         for (let kategorie in _data) {
             console.log("mme")
             let value: Boxen[] = _data[kategorie];
             document.getElementById("wahl").appendChild(fieldset);
             fieldset.appendChild(legend);
+            legend.innerText = "Auswahl";
+            let div: HTMLDivElement = document.createElement("div");
+            fieldset.appendChild(div);
+            div.innerText = kategorie;
 
             for (let i: number = 0; i < value.length; i++)
                 displaySite(value[i]);
@@ -40,7 +45,6 @@ namespace js_to_html {
     }
 
     function displaySite(_box: Boxen): void {
-        legend.innerText = "eis";
         if (_box.type == "number") {
             let input: HTMLInputElement = document.createElement("input");
             fieldset.appendChild(input);
@@ -52,6 +56,7 @@ namespace js_to_html {
             input.setAttribute("step", "1");
             input.setAttribute("max", "4");
             input.setAttribute("min", "0");
+            input.setAttribute("price", _box.preis.toString());
 
         } else if (_box.type == "checkbox") {
             let input: HTMLInputElement = document.createElement("input");
@@ -63,6 +68,7 @@ namespace js_to_html {
             input.setAttribute("type", _box.type);
             input.setAttribute("id", _box.id);
             input.setAttribute("name", _box.name);
+            input.setAttribute("price", _box.preis.toString());
         } else if (_box.type == "radio") {
             let input: HTMLInputElement = document.createElement("input");
             let label: HTMLLabelElement = document.createElement("label");
@@ -73,17 +79,17 @@ namespace js_to_html {
             input.setAttribute("type", _box.type);
             input.setAttribute("id", _box.id);
             input.setAttribute("name", _box.name);
+            input.setAttribute("price", _box.preis.toString());
         }
     }
 
 
 
 
-    /*
+    
     function handleChange(_event: Event): void {
         let allBoxes: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let sum: number = 0;
-        let price: number = 0;
         document.getElementById("eis").innerHTML = "Sorten: ";
         document.getElementById("ex").innerHTML = "Extras: ";
         document.getElementById("wob").innerHTML = "";
@@ -91,26 +97,24 @@ namespace js_to_html {
         document.getElementById("price").innerHTML = "Bestellzusammenfassung:   ";
         for (let i: number = 0; i < allBoxes.length; i++) {
             if (allBoxes[i].checked == true) {
-                price = Number(allBoxes[i].value);
-                sum += price;
+                sum += Number(allBoxes[i].getAttribute("price"));
                 console.log(sum);
-                if (allBoxes[i].name == "Checkbox1" || allBoxes[i].name == "Checkbox2" || allBoxes[i].name == "Checkbox3") {
+                if (allBoxes[i].type == "checkbox") {
                     let ziel = document.createElement("li");
                     ziel.innerHTML = `${allBoxes[i].id}, `;
                     document.getElementById("ex").appendChild(ziel);
-                } else if (allBoxes[i].name == "Radiogroup1") {
+                } else if (allBoxes[i].name == "wob") {
                     let ziel = document.createElement("li");
                     ziel.innerHTML = `${allBoxes[i].id}`;
                     document.getElementById("wob").appendChild(ziel);
-                } else if (allBoxes[i].name == "Radiogroup2") {
+                } else if (allBoxes[i].name == "lo") {
                     let ziel = document.createElement("li");
                     ziel.innerHTML = `${allBoxes[i].id}`;
                     document.getElementById("lo").appendChild(ziel);
                 }
             }
-            if ((allBoxes[i].name == "Schoko" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Vanille" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Himmelblau" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Mango" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Cookies" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Stracciatella" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Haselnuss" && Number(allBoxes[i].value) > 0) || (allBoxes[i].name == "Zitrone" && Number(allBoxes[i].value) > 0)) {
-                price = Number(allBoxes[i].value);
-                sum += price;
+            if (allBoxes[i].type == "number" && Number(allBoxes[i].value) > 0) {
+                sum += (Number(allBoxes[i].getAttribute("price"))*Number(allBoxes[i].value));
                 console.log(sum);
                 let ziel = document.createElement("li");
                 ziel.innerHTML = `${allBoxes[i].value} Kugeln ${allBoxes[i].name}, `;
@@ -120,8 +124,8 @@ namespace js_to_html {
         }
 
     }
-    */
-    /*
+    
+    
     function bestellungPrüfen(): void {
         let allBoxes: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         console.log("bp");
@@ -129,6 +133,10 @@ namespace js_to_html {
         let eischecked: number = 0;
         let lochecked: number = 0;
         let adchecked: number = 0;
+
+        if (allBoxes[0].checked == false && allBoxes[1].checked == false) {
+            missing += "Darreichungsform, ";
+        }
         for (let i: number = 0; i < 8; i++) {
             if (Number(allBoxes[i].value) > 0) {
                 eischecked = 1;
@@ -138,11 +146,7 @@ namespace js_to_html {
         if (eischecked == 0) {
             missing += "Sorte, ";
         }
-        if (allBoxes[11].checked == false && allBoxes[12].checked == false) {
-            missing += "Darreichungsform, ";
-            console.log(allBoxes[5].checked);
-            console.log(allBoxes[6].checked);
-        }
+        
         for (let i: number = 13; i < 16; i++) {
             if (allBoxes[i].checked == true) {
                 lochecked = 1;
@@ -165,5 +169,5 @@ namespace js_to_html {
             alert("Bitte noch folgendes angeben: " + missing);
         }
     }
-    */
+    
 }
