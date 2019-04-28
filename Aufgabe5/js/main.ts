@@ -1,8 +1,8 @@
 /*
-Aufgabe: Aufgabe 4: Icedealer
+Aufgabe: Aufgabe 5: Icedealer
 Name: Felix Brunn
 Matrikel: 260550
-Datum: 21.04.2019
+Datum: 28.04.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
@@ -11,7 +11,7 @@ namespace js_to_html {
 
     function init(_event: Event): void {
         generateSite(data);
-        
+
         let fieldsets: HTMLCollectionOf<HTMLFieldSetElement> = document.getElementsByTagName("fieldset");
         for (let i: number = 0; i < fieldsets.length; i++) {
             let fieldset: HTMLFieldSetElement = fieldsets[i];
@@ -19,8 +19,8 @@ namespace js_to_html {
             fieldset.addEventListener("change", handleChange);
             document.getElementById("bp").addEventListener("click", bestellungPrüfen);
         }
-        
-        
+
+
     }
 
     let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
@@ -86,7 +86,7 @@ namespace js_to_html {
 
 
 
-    
+
     function handleChange(_event: Event): void {
         let allBoxes: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         let sum: number = 0;
@@ -114,7 +114,7 @@ namespace js_to_html {
                 }
             }
             if (allBoxes[i].type == "number" && Number(allBoxes[i].value) > 0) {
-                sum += (Number(allBoxes[i].getAttribute("price"))*Number(allBoxes[i].value));
+                sum += (Number(allBoxes[i].getAttribute("price")) * Number(allBoxes[i].value));
                 console.log(sum);
                 let ziel = document.createElement("li");
                 ziel.innerHTML = `${allBoxes[i].value} Kugeln ${allBoxes[i].name}, `;
@@ -124,8 +124,8 @@ namespace js_to_html {
         }
 
     }
-    
-    
+
+
     function bestellungPrüfen(): void {
         let allBoxes: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         console.log("bp");
@@ -133,32 +133,37 @@ namespace js_to_html {
         let eischecked: number = 0;
         let lochecked: number = 0;
         let adchecked: number = 0;
+        let wobchecked: number = 0;
 
-        if (allBoxes[0].checked == false && allBoxes[1].checked == false) {
-            missing += "Darreichungsform, ";
-        }
-        for (let i: number = 0; i < 8; i++) {
-            if (Number(allBoxes[i].value) > 0) {
-                eischecked = 1;
-                console.log(eischecked);
+        for (let i: number = 0; i < allBoxes.length; i++) {
+            if (allBoxes[i].type == "text")
+                if (allBoxes[i].value == "") {
+                    adchecked++;
+                }
+            if (allBoxes[i].type == "number") {
+                if (Number(allBoxes[i].value) > 0) {
+                    eischecked = 1;
+                }
             }
+            if (allBoxes[i].name == "wob") {
+                if (allBoxes[i].checked == true) {
+                    wobchecked = 1;
+                }
+            }
+            if (allBoxes[i].name == "lo") {
+                if (allBoxes[i].checked == true) {
+                    lochecked = 1;
+                }
+            }
+        }
+        if (wobchecked == 0) {
+            missing += "Darreichungsform, ";
         }
         if (eischecked == 0) {
             missing += "Sorte, ";
         }
-        
-        for (let i: number = 13; i < 16; i++) {
-            if (allBoxes[i].checked == true) {
-                lochecked = 1;
-            }
-        }
         if (lochecked == 0) {
             missing += "Lieferoption, ";
-        }
-        for (let i: number = 16; i < 20; i++) {
-            if (allBoxes[i].value == "") {
-                adchecked++;
-            }
         }
         if (adchecked > 0) {
             missing += "Adressdaten, ";
@@ -169,5 +174,5 @@ namespace js_to_html {
             alert("Bitte noch folgendes angeben: " + missing);
         }
     }
-    
+
 }

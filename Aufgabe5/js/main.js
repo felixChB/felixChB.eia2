@@ -1,8 +1,8 @@
 /*
-Aufgabe: Aufgabe 4: Icedealer
+Aufgabe: Aufgabe 5: Icedealer
 Name: Felix Brunn
 Matrikel: 260550
-Datum: 21.04.2019
+Datum: 28.04.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
@@ -121,30 +121,36 @@ var js_to_html;
         let eischecked = 0;
         let lochecked = 0;
         let adchecked = 0;
-        if (allBoxes[0].checked == false && allBoxes[1].checked == false) {
-            missing += "Darreichungsform, ";
-        }
-        for (let i = 0; i < 8; i++) {
-            if (Number(allBoxes[i].value) > 0) {
-                eischecked = 1;
-                console.log(eischecked);
+        let wobchecked = 0;
+        for (let i = 0; i < allBoxes.length; i++) {
+            if (allBoxes[i].type == "text")
+                if (allBoxes[i].value == "") {
+                    adchecked++;
+                }
+            if (allBoxes[i].type == "number") {
+                if (Number(allBoxes[i].value) > 0) {
+                    eischecked = 1;
+                }
             }
+            if (allBoxes[i].name == "wob") {
+                if (allBoxes[i].checked == true) {
+                    wobchecked = 1;
+                }
+            }
+            if (allBoxes[i].name == "lo") {
+                if (allBoxes[i].checked == true) {
+                    lochecked = 1;
+                }
+            }
+        }
+        if (wobchecked == 0) {
+            missing += "Darreichungsform, ";
         }
         if (eischecked == 0) {
             missing += "Sorte, ";
         }
-        for (let i = 13; i < 16; i++) {
-            if (allBoxes[i].checked == true) {
-                lochecked = 1;
-            }
-        }
         if (lochecked == 0) {
             missing += "Lieferoption, ";
-        }
-        for (let i = 16; i < 20; i++) {
-            if (allBoxes[i].value == "") {
-                adchecked++;
-            }
         }
         if (adchecked > 0) {
             missing += "Adressdaten, ";
