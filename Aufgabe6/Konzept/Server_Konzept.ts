@@ -1,4 +1,4 @@
-import * as Http from "http"; //Http-Objekt wird erstellt, alle möglichen Imports von "http" werden zum Http-Objekt hinzugefügt
+/*import * as Http from "http"; //Http-Objekt wird erstellt, alle möglichen Imports von "http" werden zum Http-Objekt hinzugefügt
 
 namespace L05_Server { //öffnet nampespace L05_Server
 	console.log("Starting server"); //gibt auf der Konsole "Starting Server" aus(zum prüfen obs geklappt hat)
@@ -26,3 +26,4 @@ namespace L05_Server { //öffnet nampespace L05_Server
 		_response.end(); //schließt _response ab
 	} //schließt die funktion handleRequest
 } //schließt nampespace L05_Server
+*/
