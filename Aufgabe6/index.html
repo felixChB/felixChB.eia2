@@ -26,23 +26,23 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
         Icedealer.com
     </header>
     <main>
-        <form action="https://eia2-eisserver.herokuapp.com/" method="get">
+        <form action="https://eia2-eisserver.herokuapp.com/" method="get" target="_blank">
             <div id="gridbox">
                 <div id="wahl">
                 </div>
                 <div>
                     <fieldset id="adresse">
                         <legend>Adressdaten</legend>
-                        <span>Straße <input type="text" name="Text" placeholder="Musterstraße" value="0"
+                        <span>Straße <input type="text" name="Strasse" placeholder="Musterstraße"
                                 required /></span>
                         <br>
-                        <span>Hausnummer <input type="text" pattern="[0-9]{2}" name="number" placeholder="00000"
+                        <span>Hausnummer <input type="text" pattern="[0-9]{2}" name="HausNr" placeholder="00000"
                                 value="0" required /></span>
                         <hr>
-                        <span>Stadt <input type="text" name="Text" placeholder="Musterstadt" id="city"
+                        <span>Stadt <input type="text" name="Stadt" placeholder="Musterstadt"
                                 required /></span>
                         <br>
-                        <span>Postleitzahl <input type="text" pattern="[0-9]{5}" name="number" placeholder="00000"
+                        <span>Postleitzahl <input type="text" pattern="[0-9]{5}" name="Plz" placeholder="00000"
                                 value="0" required /></span>
                     </fieldset>
                     <button type="submit" id="bp">Bestellung prüfen</button>

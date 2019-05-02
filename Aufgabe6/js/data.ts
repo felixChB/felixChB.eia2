@@ -20,9 +20,9 @@ namespace js_to_html {
     }
 
     export let data: fieldsetboxes = {
-        "wob": [
-            { type: "radio", name: "wob", id: "Waffel", preis: 0 },
-            { type: "radio", name: "wob", id: "Becher", preis: 0 }
+        "WaffeloderBecher": [
+            { type: "radio", name: "WaffeloderBecher", id: "Waffel", preis: 0 },
+            { type: "radio", name: "WaffeloderBecher", id: "Becher", preis: 0 }
         ],
         "Sorten": [
             { type: "number", name: "Schoko", id: "Schoko", preis: 1 },
@@ -32,12 +32,12 @@ namespace js_to_html {
         ],
         "Extras": [
             { type: "checkbox", name: "Sahne", id: "Sahne", preis: 0.5 },
-            { type: "checkbox", name: "Schoko-Streußel", id: "Schoko-Streußel", preis: 0.5 }
+            { type: "checkbox", name: "Schoko-Streussel", id: "Schoko-Streussel", preis: 0.5 }
         ],
         "Lieferoption": [
-            { type: "radio", name: "lo", id: "Standard-Versandt", preis: 1 },
-            { type: "radio", name: "lo", id: "Express-Versandt", preis: 2 },
-            { type: "radio", name: "lo", id: "Selbst abholen", preis: 0 }
+            { type: "radio", name: "Lieferoption", id: "Standard-Versandt", preis: 1 },
+            { type: "radio", name: "Lieferoption", id: "Express-Versandt", preis: 2 },
+            { type: "radio", name: "Lieferoption", id: "Selbst abholen", preis: 0 }
         ]
     };
 }

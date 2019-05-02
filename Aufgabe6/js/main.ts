@@ -80,6 +80,7 @@ namespace js_to_html {
             input.setAttribute("id", _box.id);
             input.setAttribute("name", _box.name);
             input.setAttribute("price", _box.preis.toString());
+            input.setAttribute("value", _box.id);
         }
     }
 
@@ -145,12 +146,12 @@ namespace js_to_html {
                     eischecked = 1;
                 }
             }
-            if (allBoxes[i].name == "wob") {
+            if (allBoxes[i].name == "WaffeloderBecher") {
                 if (allBoxes[i].checked == true) {
                     wobchecked = 1;
                 }
             }
-            if (allBoxes[i].name == "lo") {
+            if (allBoxes[i].name == "Lieferoption") {
                 if (allBoxes[i].checked == true) {
                     lochecked = 1;
                 }
