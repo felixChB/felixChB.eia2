@@ -1,0 +1,102 @@
+/*
+Aufgabe: Aufgabe 6: Erster Node Server
+Name: Felix Brunn
+Matrikel: 260550
+Datum: 02.05.2019
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    background-color: aqua;
+    text-align: center;
+    font-size: 2.5rem;
+}
+#gridbox{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+html{
+    background-color: white;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+fieldset span{
+    margin: 5px 5px 5px 5px;
+    float: left;
+}
+#adresse span{
+    float: none;
+}
+p{
+    font-size: 1.2rem;
+    margin: 4px 3px 4px 3px;
+    text-decoration: underline;
+}
+#zsmn{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 14rem;
+    background-color: rgb(243, 102, 149);
+    overflow: auto;
+}
+#zsmn span{
+    display: block;
+    font-size: 0.8rem;
+}
+#zsmn li{
+    display: inline-block;
+    list-style-type: none;
+}
+button{
+    background-color: rgb(253, 185, 57);
+    border: solid black 3px;
+    border-radius: 2px;
+    padding: 5px 4px 5px 4px;
+    font-family: 'Gloria Hallelujah', cursive;
+    cursor: pointer;
+    width: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+fieldset{
+    margin: 0;
+}
+#serverA{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 14rem;
+    background-color: aquamarine;
+}
+
+
+
+@media only screen and (max-width: 1000px){
+    #gridbox{
+        grid-template-columns: 1fr;
+        margin-bottom: 8rem;
+        margin-top: 3rem;
+    }
+    #zsmn{
+        height: 8rem;
+        width: 100%;
+    }
+    button{
+        width: 70%;
+        margin-right: 15%;
+        margin-left: 15%;
+    }
+    header{
+        height: 3rem;
+        font-size: 2rem;
+    }
+}
