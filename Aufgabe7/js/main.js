@@ -167,8 +167,8 @@ var js_to_html;
     function writeUrl() {
         let allBoxes = document.getElementsByTagName("input");
         console.log("Url wird geschrieben");
-        let writtenUrl = "http://localhost:8100/?";
-        //let writtenUrl: string = "https://eia2-eisserver.herokuapp.com/?";
+        //let writtenUrl: string = "http://localhost:8100/?";
+        let writtenUrl = "https://eia2-eisserver.herokuapp.com/?";
         for (let i = 0; i < allBoxes.length; i++) {
             if (allBoxes[i].type == "number")
                 if (Number(allBoxes[i].value) > 0) {
@@ -203,7 +203,7 @@ var js_to_html;
         console.log("serverantwort schreiben");
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            document.getElementById("serverA").innerHTML = xhr.response;
+            document.getElementById("serverA").innerHTML = "<p>Vom Server übermittelte Daten</p><br>" + xhr.response;
         }
     }
 })(js_to_html || (js_to_html = {}));

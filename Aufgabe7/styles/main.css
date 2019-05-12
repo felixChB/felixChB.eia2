@@ -76,6 +76,7 @@ fieldset{
     width: 50%;
     height: 14rem;
     background-color: aquamarine;
+    overflow: auto;
 }
 
 

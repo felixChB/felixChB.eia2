@@ -179,8 +179,8 @@ namespace js_to_html {
     function writeUrl(): void {
         let allBoxes: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
         console.log("Url wird geschrieben");
-        let writtenUrl: string = "http://localhost:8100/?";
-        //let writtenUrl: string = "https://eia2-eisserver.herokuapp.com/?";
+        //let writtenUrl: string = "http://localhost:8100/?";
+        let writtenUrl: string = "https://eia2-eisserver.herokuapp.com/?";
         for (let i: number = 0; i < allBoxes.length; i++) {
             if (allBoxes[i].type == "number")
                 if (Number(allBoxes[i].value) > 0) {
@@ -218,7 +218,7 @@ namespace js_to_html {
         console.log("serverantwort schreiben");
         let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            document.getElementById("serverA").innerHTML = xhr.response;
+            document.getElementById("serverA").innerHTML = "<p>Vom Server übermittelte Daten</p><br>" + xhr.response;
         }
     }
 }
