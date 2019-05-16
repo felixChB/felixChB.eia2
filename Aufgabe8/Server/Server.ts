@@ -10,13 +10,13 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 
 import * as Http from "http";
 import * as Url from "url";
-import * as Mongo from "mongodb";
+/*import * as Mongo from "mongodb";
 
 Mongo.connect("mongodb+srv://LV100_Mafiaboss:obey@mongoeia2-5ultx.mongodb.net/test?retryWrites=true", mongoCallback);
 
 function mongoCallback(db: any): void {
 	
-}
+}*/
 
 console.log("Starting server");
 let port: number = Number(process.env.PORT);

@@ -11,10 +11,13 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
-const Mongo = require("mongodb");
+/*import * as Mongo from "mongodb";
+
 Mongo.connect("mongodb+srv://LV100_Mafiaboss:obey@mongoeia2-5ultx.mongodb.net/test?retryWrites=true", mongoCallback);
-function mongoCallback(db) {
-}
+
+function mongoCallback(db: any): void {
+    
+}*/
 console.log("Starting server");
 let port = Number(process.env.PORT);
 if (!port)
