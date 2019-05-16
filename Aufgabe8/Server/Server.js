@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*
 Aufgabe: Aufgabe 8: Erste Datenbank
 Name: Felix Brunn
@@ -8,6 +7,8 @@ Datum: 16.05.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
+//https://eia2-eisserver.herokuapp.com/
+Object.defineProperty(exports, "__esModule", { value: true });
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
