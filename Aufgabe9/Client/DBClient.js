@@ -22,7 +22,7 @@ var DBClient;
         let query = "command=search";
         query += "&matrikel=" + inputs[3].value;
         console.log(query);
-        sendRequest(query, handleInsertResponse);
+        sendRequest(query, handleFindResponse);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
