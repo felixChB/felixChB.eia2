@@ -1,8 +1,9 @@
-/**
- * Simple server managing between client and database
- * @author: Jirka Dell'Oro-Friedl
- * @adapted: Lukas Scheuerle
- */
+/*Aufgabe: Aufgabe 9: Serveranbindung Datenbank
+Name: Felix Brunn
+Matrikel: 260550
+Datum: 23.05.2019
+	
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
 import * as Http from "http";
 import * as Url from "url";

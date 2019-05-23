@@ -1,7 +1,13 @@
+/*Aufgabe: Aufgabe 9: Serveranbindung Datenbank
+Name: Felix Brunn
+Matrikel: 260550
+Datum: 23.05.2019
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 var DBClient;
 (function (DBClient) {
     window.addEventListener("load", init);
-    let serverAddress = "http://localhost:8100/";
+    let serverAddress = "https://eia2-eisserver.herokuapp.com/";
     // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
     function init(_event) {
         console.log("Init");
