@@ -56,4 +56,18 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
+function searchMatrikel(_matrikel, _callback) {
+    var cursor = students.find({ matrikel: _matrikel });
+    cursor.toArray(prepareAnswer);
+    // toArray-handler receives two standard parameters, an error object and the array
+    // implemented as inner function, so _callback is in scope
+    function prepareAnswer(_e, studentArray) {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            // stringify creates a json-string, passed it back to _callback
+            _callback(JSON.stringify(studentArray));
+    }
+}
+exports.searchMatrikel = searchMatrikel;
 //# sourceMappingURL=Database.js.map
