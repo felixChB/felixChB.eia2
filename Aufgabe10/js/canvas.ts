@@ -7,39 +7,39 @@ namespace aquarium {
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
 
-		water();
-		ground();
+		drawWater();
+		drawGround();
 
 
 		for (let i: number = 0; i < 6; i++) {
 			let x: number = Math.random() * canvas.width;
 			let y: number = 430;
-			plants(x, y);
+			drawPlants(x, y);
 		}
 		for (let i: number = 0; i < 4; i++) {
 			let x: number = Math.random() * canvas.width;
 			let y: number = 440;
-			stoned(x, y);
+			drawStone(x, y);
 		}
 		for (let i: number = 0; i < 15; i++) {
 			let x: number = Math.random() * canvas.width;
 			let y: number = Math.random() * canvas.height - 70;
-			bubble(x, y);
+			drawBubble(x, y);
 		}
 		for (let i: number = 0; i < 7; i++) {
 			let x: number = Math.random() * canvas.width;
 			let y: number = Math.random() * canvas.height - 100;
-			fish(x, y);
+			drawFish(x, y);
 		}
 		for (let i: number = 0; i < 3; i++) {
 			let x: number = Math.random() * canvas.width;
 			let y: number = Math.random() * canvas.height - 50;
-			crab(x, y);
+			drawCrab(x, y);
 		}
 
 	}
 
-	function water(): void {
+	function drawWater(): void {
 		let water: Path2D = new Path2D();
 		water.rect(0, 0, 1000, 500);
 		crc.fillStyle = "#3b42a3";
@@ -48,7 +48,7 @@ namespace aquarium {
 		crc.stroke(water);
 	}
 
-	function ground(): void {
+	function drawGround(): void {
 		let ground: Path2D = new Path2D();
 		ground.rect(0, 420, 1000, 80);
 		crc.fillStyle = "#f7ddbb";
@@ -57,7 +57,7 @@ namespace aquarium {
 		crc.stroke(ground);
 	}
 
-	function plants(_x: number, _y: number): void {
+	function drawPlants(_x: number, _y: number): void {
 		crc.beginPath();
 		crc.moveTo(_x, _y);
 		crc.bezierCurveTo(_x + 50, _y - 40, _x - 10, _y - 60, _x + 20, _y - 120);
@@ -73,7 +73,7 @@ namespace aquarium {
 		crc.stroke();
 		crc.closePath();
 	}
-	function stoned(_x: number, _y: number): void {
+	function drawStone(_x: number, _y: number): void {
 		crc.beginPath();
 		crc.moveTo(_x, _y);
 		crc.bezierCurveTo(_x + 50, _y - 40, _x - 10, _y - 60, _x - 30, _y - 50);
@@ -86,7 +86,7 @@ namespace aquarium {
 		crc.fill();
 		crc.stroke();
 	}
-	function bubble(_x: number, _y: number): void {
+	function drawBubble(_x: number, _y: number): void {
 		let bubble: Path2D = new Path2D();
 		bubble.arc(_x, _y, (Math.random() * (30 - 5) + 5), 0, 2 * Math.PI);
 		crc.lineWidth = 2;
@@ -95,7 +95,7 @@ namespace aquarium {
 		crc.fill(bubble);
 		crc.stroke(bubble);
 	}
-	function fish(_x: number, _y: number): void {
+	function drawFish(_x: number, _y: number): void {
 		let body: Path2D = new Path2D();
 		body.ellipse(_x, _y, 20, 40, 30, 0, 2 * Math.PI);
 		crc.lineWidth = 1;
@@ -138,7 +138,7 @@ namespace aquarium {
 		fishMouth.lineTo(_x + 28, _y + 8);
 		crc.stroke(fishMouth);
 	}
-	function crab(_x: number, _y: number): void {
+	function drawCrab(_x: number, _y: number): void {
 		let crabBody: Path2D = new Path2D;
 		crabBody.moveTo(_x, _y);
 		crabBody.lineTo(_x + 20, _y - 20);
