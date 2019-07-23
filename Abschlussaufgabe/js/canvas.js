@@ -11,12 +11,14 @@ var game;
     let fps = 30;
     let imageData;
     let player;
+    let score = 0;
     function init() {
         game.canvas = document.getElementsByTagName("canvas")[0];
         game.crc = game.canvas.getContext("2d");
         drawBackground();
         imageData = game.crc.getImageData(0, 0, game.canvas.width, game.canvas.height);
         document.addEventListener("keydown", moving);
+        /* document.addEventListener("keydown", shoot); */
         player = new game.Player();
         for (let i = 0; i < 11; i++) {
             let fish = new game.Fish();
@@ -110,23 +112,26 @@ var game;
         let pressedKey = _e.which;
         switch (pressedKey) {
             case 87:
-                console.log("up");
                 player.move("up");
                 break;
             case 83:
-                console.log("down");
                 player.move("down");
                 break;
             case 65:
-                console.log("left");
                 player.move("left");
                 break;
             case 68:
-                console.log("right");
                 player.move("right");
                 break;
         }
     }
+    /* function shoot(_e: KeyboardEvent): void {
+        let pressedKey: number = _e.which;
+        if (pressedKey == 32) {
+            let bubble: Bubble = new Bubble();
+            allObj.push(bubble);
+        }
+    } */
     function collide() {
         for (let i = 0; i < allObj.length; i++) {
             let o = allObj[i];
@@ -135,9 +140,20 @@ var game;
             let abstand = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
             let hitboxAbstand = abstand - o.h - player.h;
             if (hitboxAbstand < 0) {
-                allObj.splice(i, 1);
+                if (player.h > o.h) {
+                    allObj.splice(i, 1);
+                    player.h += 4;
+                }
+                else {
+                    gameOver();
+                }
             }
         }
+    }
+    function gameOver() {
+        window.clearTimeout(window.setTimeout(update, 1000 / fps));
+        alert("Game Over!" + "Dein Score: " + score);
+        location.reload();
     }
 })(game || (game = {}));
 //# sourceMappingURL=canvas.js.map

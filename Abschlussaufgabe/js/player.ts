@@ -18,7 +18,7 @@ namespace game {
 			this.y = canvas.height / 2;
 			this.dx = 0;
 			this.dy = 0;
-			this.h = 50;
+			this.h = 30;
 		}
 
 		draw(): void {
