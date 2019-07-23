@@ -1,7 +1,18 @@
 html, body {
-    margin: 0;
+    margin: 3rem 0 0 0;
     padding: 0;
 }
-/*canvas {
-
-}*/
+header {
+    background-color: aqua;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+}
+#game {
+    text-align: center;
+}

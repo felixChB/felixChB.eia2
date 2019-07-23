@@ -1,16 +1,21 @@
-/*Aufgabe: Aufgabe 11: Animationen und Klassen
+/*Abschlussaufgabe: Canvas-Game
 Name: Felix Brunn
 Matrikel: 260550
-Datum: 08.06.2019
+Datum: 23.07.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
-namespace aquarium {
-	export class Crab {
-		x: number;
-		y: number;
-		dx: number;
+namespace game {
+	export class Crab extends GameObj {
 		color: string;
+
+		constructor() {
+			super();
+			this.x = Math.random() * canvas.width;
+			this.y = Math.random() * canvas.height - 50;
+			this.dx = Math.random() * 10 - 8;
+			this.dy = 0;
+		}
 
 		draw(): void {
 			let crabBody: Path2D = new Path2D;
@@ -67,13 +72,8 @@ namespace aquarium {
 			crc.stroke(crabfühl);
 		}
 
-		update(): void {
-			this.move();
-			this.draw();
-		}
-
 		move(): void {
-			this.x += this.dx;
+			super.move();
 			if (this.x > (crc.canvas.width + 15)) {
 				this.x = -80;
 			}

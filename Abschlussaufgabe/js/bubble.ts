@@ -1,18 +1,26 @@
-/*Aufgabe: Aufgabe 11: Animationen und Klassen
+/*Abschlussaufgabe: Canvas-Game
 Name: Felix Brunn
 Matrikel: 260550
-Datum: 08.06.2019
+Datum: 23.07.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
-namespace aquarium {
-	export class Bubble {
-		x: number;
-		y: number;
-		dy: number;
+namespace game {
+	export class Bubble extends GameObj {
 		r: number;
 		t: number;
 		color: string;
+
+		constructor() {
+			super();
+			this.x = Math.random() * canvas.width;
+			this.y = Math.random() * canvas.height - 70;
+			this.dx = 0;
+			this.dy = Math.random() * (-5) - 2;
+			this.r = (Math.random() * (15 - 5) + 5);
+			this.t = Math.random();
+			this.color = `rgba(167, 211, 223, ${this.t})`;
+		}
 
 		draw(): void {
 			let bubble: Path2D = new Path2D();
@@ -24,15 +32,10 @@ namespace aquarium {
 			crc.stroke(bubble);
 		}
 
-		update(): void {
-			this.move();
-			this.draw();
-		}
-
 		move(): void {
-			this.y += this.dy;
+			super.move();
 			if (this.y < -25) {
-				this.y = crc.canvas.height + 25;
+				this.y = 525;
 			}
 		}
 	}

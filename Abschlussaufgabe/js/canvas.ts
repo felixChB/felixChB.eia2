@@ -1,19 +1,18 @@
-/*Aufgabe: Aufgabe 11: Animationen und Klassen
+/*Abschlussaufgabe: Canvas-Game
 Name: Felix Brunn
 Matrikel: 260550
-Datum: 08.06.2019
+Datum: 23.07.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
-namespace aquarium {
+namespace game {
 	document.addEventListener("DOMContentLoaded", init);
 	export let crc: CanvasRenderingContext2D;
-	let canvas: HTMLCanvasElement;
-	let fishArray: Fish[] = [];
-	let crabArray: Crab[] = [];
-	let bubbleArray: Bubble[] = [];
+	export let canvas: HTMLCanvasElement;
+	let allObj: GameObj[] = [];
 	let fps: number = 30;
 	let imageData: ImageData;
+	let player: Player;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
@@ -23,52 +22,28 @@ namespace aquarium {
 
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 
+		document.addEventListener("keydown", moving);
+
+		player = new Player()
+
 		for (let i: number = 0; i < 11; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height - 100;
-			let dx: number = Math.random() * 20;
-			let dy: number = Math.random() * 20 - 10;
-			let fish: Fish;
-			fish = new Fish();
-			fish.x = x;
-			fish.y = y;
-			fish.dx = dx;
-			fish.dy = dy;
-			fishArray.push(fish);
+			let fish: Fish = new Fish();
+			allObj.push(fish);
 			fish.draw();
-			console.log(fish);
+			console.log("fish");
 		}
 		for (let i: number = 0; i < 6; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height - 50;
-			let dx: number = Math.random() * 10 - 8;
-			let crab: Crab;
-			crab = new Crab();
-			crab.x = x;
-			crab.y = y;
-			crab.dx = dx;
+			let crab: Crab = new Crab();
 			crab.color = "#f90a0c";
-			crabArray.push(crab);
+			allObj.push(crab);
 			crab.draw();
-			console.log(crab);
+			console.log("crab");
 		}
 		for (let i: number = 0; i < 50; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height - 70;
-			let dy: number = Math.random() * (-5) - 2;
-			let r: number = (Math.random() * (15 - 5) + 5);
-			let transparency: number = Math.random();
-			let bubble: Bubble;
-			bubble = new Bubble();
-			bubble.x = x;
-			bubble.y = y;
-			bubble.dy = dy;
-			bubble.r = r;
-			bubble.t = transparency;
-			bubble.color = `rgba(167, 211, 223, ${transparency})`;
-			bubbleArray.push(bubble);
+			let bubble: Bubble = new Bubble();
+			allObj.push(bubble);
 			bubble.draw();
-			console.log(bubble);
+			console.log("bubble");
 		}
 
 		update();
@@ -80,15 +55,11 @@ namespace aquarium {
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		crc.putImageData(imageData, 0, 0);
 
-		for (let i: number = 0; i < fishArray.length; i++) {
-			fishArray[i].update();
+		for (let i: number = 0; i < allObj.length; i++) {
+			allObj[i].update();
 		}
-		for (let i: number = 0; i < crabArray.length; i++) {
-			crabArray[i].update();
-		}
-		for (let i: number = 0; i < bubbleArray.length; i++) {
-			bubbleArray[i].update();
-		}
+
+		player.update();
 	}
 
 	function drawBackground(): void {
@@ -152,5 +123,27 @@ namespace aquarium {
 		crc.fillStyle = "#717171";
 		crc.fill();
 		crc.stroke();
+	}
+
+	function moving(_e: KeyboardEvent): void {
+		let pressedKey: number = _e.which;
+		switch (pressedKey) {
+			case 87:
+				console.log("up");
+				player.move("up");
+				break;
+			case 83:
+				console.log("down");
+				player.move("down");
+				break;
+			case 65:
+				console.log("left");
+				player.move("left");
+				break;
+			case 68:
+				console.log("right");
+				player.move("right");
+				break;
+		}
 	}
 }

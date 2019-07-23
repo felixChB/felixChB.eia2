@@ -6,19 +6,18 @@ Datum: 23.07.2019
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 var game;
 (function (game) {
-    class Fish extends game.GameObj {
+    class Player {
         constructor() {
-            super();
-            this.x = Math.random() * game.canvas.width;
-            this.y = Math.random() * game.canvas.height - 100;
-            this.dx = Math.random() * 20;
-            this.dy = Math.random() * 20 - 10;
+            this.x = game.canvas.width / 2;
+            this.y = game.canvas.height / 2;
+            this.dx = 0;
+            this.dy = 0;
         }
         draw() {
             let body = new Path2D();
             body.ellipse(this.x, this.y, 20, 40, 30, 0, 2 * Math.PI);
             game.crc.lineWidth = 1;
-            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
+            game.crc.fillStyle = `rgba(${(255)}, ${(255)}, ${(255)})`;
             game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
             game.crc.fill(body);
             game.crc.stroke(body);
@@ -53,19 +52,39 @@ var game;
             fishMouth.lineTo(this.x + 28, this.y + 8);
             game.crc.stroke(fishMouth);
         }
-        move() {
-            super.move();
-            if (this.x > (game.crc.canvas.width + 80)) {
-                this.x = -120;
+        update() {
+            this.move("zero");
+            this.draw();
+        }
+        move(_case) {
+            switch (_case) {
+                case "up": {
+                    this.dy = -10;
+                    break;
+                }
+                case "down": {
+                    this.dy = 10;
+                    break;
+                }
+                case "left": {
+                    this.dx = -10;
+                    break;
+                }
+                case "right": {
+                    this.dx = 10;
+                    break;
+                }
+                case "zero": {
+                    this.dx = 0;
+                    this.dy = 0;
+                }
             }
-            if (this.y > (game.crc.canvas.height + 50)) {
-                this.y = -50;
-            }
-            if (this.y < (-50)) {
-                this.y = (game.crc.canvas.height + 50);
-            }
+            this.x += this.dx;
+            this.y += this.dy;
+        }
+        crash(_other) {
         }
     }
-    game.Fish = Fish;
+    game.Player = Player;
 })(game || (game = {}));
-//# sourceMappingURL=fish.js.map
+//# sourceMappingURL=player.js.map
