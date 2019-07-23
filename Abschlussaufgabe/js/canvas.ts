@@ -24,7 +24,8 @@ namespace game {
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 
 		document.addEventListener("keydown", moving);
-		/* document.addEventListener("keydown", shoot); */
+		document.addEventListener("keyup", deMoving);
+		document.addEventListener("keydown", shoot);
 
 		player = new Player()
 
@@ -63,6 +64,10 @@ namespace game {
 
 		player.update();
 		collide();
+
+		crc.fillStyle = "black";
+		crc.font = "30px Arial";
+		crc.fillText("Score: " + score.toString(), 840, 40);
 	}
 
 	function drawBackground(): void {
@@ -132,27 +137,50 @@ namespace game {
 		let pressedKey: number = _e.which;
 		switch (pressedKey) {
 			case 87:
-				player.move("up");
+				player.dy = -10;
 				break;
 			case 83:
-				player.move("down");
+				player.dy = 10;
 				break;
 			case 65:
-				player.move("left");
+				player.dx = -10;
 				break;
 			case 68:
-				player.move("right");
+				player.dx = 10;
 				break;
 		}
 	}
 
-	/* function shoot(_e: KeyboardEvent): void {
+	function deMoving(_e: KeyboardEvent): void {
+		let pressedKey: number = _e.which;
+		switch (pressedKey) {
+			case 87:
+				player.dy = 0;
+				break;
+			case 83:
+				player.dy = 0;
+				break;
+			case 65:
+				player.dx = 0;
+				break;
+			case 68:
+				player.dx = 0;
+				break;
+		}
+	}
+
+	function shoot(_e: KeyboardEvent): void {
 		let pressedKey: number = _e.which;
 		if (pressedKey == 32) {
-			let bubble: Bubble = new Bubble();
-			allObj.push(bubble);
+			console.log("shoot");
+			let x: number = player.x;
+			let y: number = player.y;
+			let shot: BubbleShot = new BubbleShot();
+			shot.x = x + 30;
+			shot.y = y;
+			allObj.push(shot);
 		}
-	} */
+	}
 
 	function collide(): void {
 		for (let i: number = 0; i < allObj.length; i++) {
@@ -167,6 +195,7 @@ namespace game {
 				if (player.h > o.h) {
 					allObj.splice(i, 1);
 					player.h += 4;
+					score += 10;
 				} else {
 					gameOver();
 				}
@@ -177,7 +206,8 @@ namespace game {
 
 	function gameOver(): void {
 		window.clearTimeout(window.setTimeout(update, 1000 / fps));
-		alert("Game Over!" + "Dein Score: " + score);
+		prompt("Game Over!" + "Dein Score: " + score);
 		location.reload();
+		console.log(score + "lo");
 	}
 }

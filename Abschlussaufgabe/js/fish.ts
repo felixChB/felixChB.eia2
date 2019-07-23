@@ -10,10 +10,10 @@ namespace game {
 
 		constructor() {
 			super();
-			this.x = Math.random() * canvas.width;
+			this.x = (Math.floor(Math.random() * 900) + 600);
 			this.y = Math.random() * canvas.height - 100;
-			this.dx = Math.random() * 10;
-			this.dy = Math.random() * 10 - 5;
+			this.dx = Math.random() * 5;
+			this.dy = Math.random() * 5 - 2;
 			this.h = 40;
 		}
 

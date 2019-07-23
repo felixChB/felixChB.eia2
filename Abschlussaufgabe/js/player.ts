@@ -71,36 +71,23 @@ namespace game {
 		}
 
 		update(): void {
-			this.move("zero");
+			this.move();
 			this.draw();
 		}
 
-		move(_case: string): void {
-			switch (_case) {
-				case "up": {
-					this.dy = -10;
-					break;
-				}
-				case "down": {
-					this.dy = 10;
-					break;
-				}
-				case "left": {
-					this.dx = -10;
-					break;
-				}
-				case "right": {
-					this.dx = 10;
-					break;
-				}
-				case "zero": {
-					this.dx = 0;
-					this.dy = 0;
-				}
-			}
-
+		move(): void {
 			this.x += this.dx;
 			this.y += this.dy;
+
+			if (this.x >= canvas.width) {
+				this.x = canvas.width;
+			} else if (this.x <= 0) {
+				this.x = 0;
+			} else if (this.y >= canvas.height) {
+				this.y = canvas.height;
+			} else if (this.y <= 0) {
+				this.y = 0;
+			}
 		}
 	}
 }

@@ -58,34 +58,24 @@ var game;
             game.crc.stroke(hitboxP);
         }
         update() {
-            this.move("zero");
+            this.move();
             this.draw();
         }
-        move(_case) {
-            switch (_case) {
-                case "up": {
-                    this.dy = -10;
-                    break;
-                }
-                case "down": {
-                    this.dy = 10;
-                    break;
-                }
-                case "left": {
-                    this.dx = -10;
-                    break;
-                }
-                case "right": {
-                    this.dx = 10;
-                    break;
-                }
-                case "zero": {
-                    this.dx = 0;
-                    this.dy = 0;
-                }
-            }
+        move() {
             this.x += this.dx;
             this.y += this.dy;
+            if (this.x >= game.canvas.width) {
+                this.x = game.canvas.width;
+            }
+            else if (this.x <= 0) {
+                this.x = 0;
+            }
+            else if (this.y >= game.canvas.height) {
+                this.y = game.canvas.height;
+            }
+            else if (this.y <= 0) {
+                this.y = 0;
+            }
         }
     }
     game.Player = Player;

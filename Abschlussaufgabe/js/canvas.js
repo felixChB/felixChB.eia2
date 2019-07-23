@@ -18,7 +18,8 @@ var game;
         drawBackground();
         imageData = game.crc.getImageData(0, 0, game.canvas.width, game.canvas.height);
         document.addEventListener("keydown", moving);
-        /* document.addEventListener("keydown", shoot); */
+        document.addEventListener("keyup", deMoving);
+        document.addEventListener("keydown", shoot);
         player = new game.Player();
         for (let i = 0; i < 11; i++) {
             let fish = new game.Fish();
@@ -50,6 +51,9 @@ var game;
         }
         player.update();
         collide();
+        game.crc.fillStyle = "black";
+        game.crc.font = "30px Arial";
+        game.crc.fillText("Score: " + score.toString(), 840, 40);
     }
     function drawBackground() {
         drawWater();
@@ -112,26 +116,48 @@ var game;
         let pressedKey = _e.which;
         switch (pressedKey) {
             case 87:
-                player.move("up");
+                player.dy = -10;
                 break;
             case 83:
-                player.move("down");
+                player.dy = 10;
                 break;
             case 65:
-                player.move("left");
+                player.dx = -10;
                 break;
             case 68:
-                player.move("right");
+                player.dx = 10;
                 break;
         }
     }
-    /* function shoot(_e: KeyboardEvent): void {
-        let pressedKey: number = _e.which;
-        if (pressedKey == 32) {
-            let bubble: Bubble = new Bubble();
-            allObj.push(bubble);
+    function deMoving(_e) {
+        let pressedKey = _e.which;
+        switch (pressedKey) {
+            case 87:
+                player.dy = 0;
+                break;
+            case 83:
+                player.dy = 0;
+                break;
+            case 65:
+                player.dx = 0;
+                break;
+            case 68:
+                player.dx = 0;
+                break;
         }
-    } */
+    }
+    function shoot(_e) {
+        let pressedKey = _e.which;
+        if (pressedKey == 32) {
+            console.log("shoot");
+            let x = player.x;
+            let y = player.y;
+            let shot = new game.BubbleShot();
+            shot.x = x + 30;
+            shot.y = y;
+            allObj.push(shot);
+        }
+    }
     function collide() {
         for (let i = 0; i < allObj.length; i++) {
             let o = allObj[i];
@@ -143,6 +169,7 @@ var game;
                 if (player.h > o.h) {
                     allObj.splice(i, 1);
                     player.h += 4;
+                    score += 10;
                 }
                 else {
                     gameOver();
@@ -152,8 +179,9 @@ var game;
     }
     function gameOver() {
         window.clearTimeout(window.setTimeout(update, 1000 / fps));
-        alert("Game Over!" + "Dein Score: " + score);
+        prompt("Game Over!" + "Dein Score: " + score);
         location.reload();
+        console.log(score + "lo");
     }
 })(game || (game = {}));
 //# sourceMappingURL=canvas.js.map
