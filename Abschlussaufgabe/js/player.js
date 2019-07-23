@@ -12,6 +12,7 @@ var game;
             this.y = game.canvas.height / 2;
             this.dx = 0;
             this.dy = 0;
+            this.h = 50;
         }
         draw() {
             let body = new Path2D();
@@ -51,6 +52,10 @@ var game;
             fishMouth.lineTo(this.x + 30, this.y + 12);
             fishMouth.lineTo(this.x + 28, this.y + 8);
             game.crc.stroke(fishMouth);
+            let hitboxP = new Path2D();
+            hitboxP.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+            game.crc.strokeStyle = "white";
+            game.crc.stroke(hitboxP);
         }
         update() {
             this.move("zero");
@@ -81,8 +86,6 @@ var game;
             }
             this.x += this.dx;
             this.y += this.dy;
-        }
-        crash(_other) {
         }
     }
     game.Player = Player;

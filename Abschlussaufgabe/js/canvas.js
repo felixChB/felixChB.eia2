@@ -47,6 +47,7 @@ var game;
             allObj[i].update();
         }
         player.update();
+        collide();
     }
     function drawBackground() {
         drawWater();
@@ -124,6 +125,18 @@ var game;
                 console.log("right");
                 player.move("right");
                 break;
+        }
+    }
+    function collide() {
+        for (let i = 0; i < allObj.length; i++) {
+            let o = allObj[i];
+            let abstandX = o.x - player.x;
+            let abstandY = o.y - player.y;
+            let abstand = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
+            let hitboxAbstand = abstand - o.h - player.h;
+            if (hitboxAbstand < 0) {
+                allObj.splice(i, 1);
+            }
         }
     }
 })(game || (game = {}));

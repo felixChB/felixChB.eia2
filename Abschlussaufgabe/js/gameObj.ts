@@ -11,6 +11,7 @@ namespace game {
 		y: number;
 		dx: number;
 		dy: number;
+		h: number;
 
 		constructor() {
 

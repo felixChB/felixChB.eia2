@@ -13,6 +13,7 @@ var game;
             this.y = Math.random() * game.canvas.height - 50;
             this.dx = Math.random() * 10 - 8;
             this.dy = 0;
+            this.h = 20;
         }
         draw() {
             let crabBody = new Path2D;
@@ -64,6 +65,10 @@ var game;
             game.crc.fillStyle = this.color;
             game.crc.strokeStyle = this.color;
             game.crc.stroke(crabfühl);
+            let hitboxC = new Path2D();
+            hitboxC.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+            game.crc.strokeStyle = "white";
+            game.crc.stroke(hitboxC);
         }
         move() {
             super.move();

@@ -15,6 +15,7 @@ namespace game {
 			this.y = Math.random() * canvas.height - 50;
 			this.dx = Math.random() * 10 - 8;
 			this.dy = 0;
+			this.h = 20;
 		}
 
 		draw(): void {
@@ -70,6 +71,11 @@ namespace game {
 			crc.fillStyle = this.color;
 			crc.strokeStyle = this.color;
 			crc.stroke(crabfühl);
+
+			let hitboxC: Path2D = new Path2D();
+			hitboxC.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+			crc.strokeStyle = "white";
+			crc.stroke(hitboxC);
 		}
 
 		move(): void {

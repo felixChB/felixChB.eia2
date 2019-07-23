@@ -11,12 +11,14 @@ namespace game {
 		y: number;
 		dx: number;
 		dy: number;
+		h: number;
 
 		constructor() {
 			this.x = canvas.width / 2;
 			this.y = canvas.height / 2;
 			this.dx = 0;
 			this.dy = 0;
+			this.h = 50;
 		}
 
 		draw(): void {
@@ -61,6 +63,11 @@ namespace game {
 			fishMouth.lineTo(this.x + 30, this.y + 12);
 			fishMouth.lineTo(this.x + 28, this.y + 8);
 			crc.stroke(fishMouth);
+
+			let hitboxP: Path2D = new Path2D();
+			hitboxP.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+			crc.strokeStyle = "white";
+			crc.stroke(hitboxP);
 		}
 
 		update(): void {
@@ -94,10 +101,6 @@ namespace game {
 
 			this.x += this.dx;
 			this.y += this.dy;
-		}
-
-		crash(_other: GameObj): void {
-
 		}
 	}
 }

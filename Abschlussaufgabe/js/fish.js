@@ -11,8 +11,9 @@ var game;
             super();
             this.x = Math.random() * game.canvas.width;
             this.y = Math.random() * game.canvas.height - 100;
-            this.dx = Math.random() * 20;
-            this.dy = Math.random() * 20 - 10;
+            this.dx = Math.random() * 10;
+            this.dy = Math.random() * 10 - 5;
+            this.h = 40;
         }
         draw() {
             let body = new Path2D();
@@ -52,6 +53,10 @@ var game;
             fishMouth.lineTo(this.x + 30, this.y + 12);
             fishMouth.lineTo(this.x + 28, this.y + 8);
             game.crc.stroke(fishMouth);
+            let hitboxF = new Path2D();
+            hitboxF.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+            game.crc.strokeStyle = "white";
+            game.crc.stroke(hitboxF);
         }
         move() {
             super.move();

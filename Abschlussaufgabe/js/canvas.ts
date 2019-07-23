@@ -60,6 +60,7 @@ namespace game {
 		}
 
 		player.update();
+		collide();
 	}
 
 	function drawBackground(): void {
@@ -144,6 +145,21 @@ namespace game {
 				console.log("right");
 				player.move("right");
 				break;
+		}
+	}
+
+	function collide(): void {
+		for (let i: number = 0; i < allObj.length; i++) {
+			let o: GameObj = allObj[i];
+
+			let abstandX = o.x - player.x;
+			let abstandY = o.y - player.y;
+			let abstand: number = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
+			let hitboxAbstand: number = abstand - o.h - player.h;
+
+			if (hitboxAbstand < 0) {
+				allObj.splice(i, 1);
+			}
 		}
 	}
 }
