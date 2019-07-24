@@ -35,11 +35,20 @@ var game;
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            let allPlayersArray = JSON.parse(xhr.response);
+            for (let i = 0; i < allPlayersArray.length; i++) {
+                allPlayersArray.sort(rankPlayers);
+            }
             let output = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
             let responseAsJson = JSON.parse(xhr.response);
             console.log(responseAsJson);
         }
+    }
+    function rankPlayers(_1, _2) {
+        let score1 = _1.score;
+        let score2 = _2.score;
+        return score1 + score2;
     }
 })(game || (game = {}));
 //# sourceMappingURL=DBClient.js.map

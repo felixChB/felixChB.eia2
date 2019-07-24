@@ -38,10 +38,22 @@ namespace game {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
+
+            let allPlayersArray: Player[] = JSON.parse(xhr.response);
+            for (let i: number = 0; i < allPlayersArray.length; i++) {
+                allPlayersArray.sort(rankPlayers);
+            }
+
             let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
             let responseAsJson: JSON = JSON.parse(xhr.response);
             console.log(responseAsJson);
         }
+    }
+
+    function rankPlayers(_1: Player, _2: Player): number {
+        let score1 :number = _1.score;
+        let score2 : number = _2.score;
+        return score1 + score2;
     }
 }

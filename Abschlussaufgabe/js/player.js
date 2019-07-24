@@ -6,7 +6,7 @@ Datum: 23.07.2019
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 var game;
 (function (game) {
-    class Player {
+    class PlayChar {
         constructor() {
             this.x = game.canvas.width / 2;
             this.y = game.canvas.height / 2;
@@ -70,6 +70,6 @@ var game;
             }
         }
     }
-    game.Player = Player;
+    game.PlayChar = PlayChar;
 })(game || (game = {}));
 //# sourceMappingURL=player.js.map

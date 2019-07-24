@@ -22,7 +22,7 @@ var game;
         document.addEventListener("keydown", moving);
         document.addEventListener("keyup", deMoving);
         document.addEventListener("keydown", shoot);
-        player = new game.Player();
+        player = new game.PlayChar();
         for (let i = 0; i < 11; i++) {
             let fish = new game.Fish();
             allObj.push(fish);

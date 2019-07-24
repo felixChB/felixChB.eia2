@@ -15,7 +15,7 @@ namespace game {
 	let allObj: GameObj[] = [];
 	let fps: number = 30;
 	let imageData: ImageData;
-	let player: Player;
+	let player: PlayChar;
 	let timeout: number;
 
 	function init(): void {
@@ -30,7 +30,7 @@ namespace game {
 		document.addEventListener("keyup", deMoving);
 		document.addEventListener("keydown", shoot);
 
-		player = new Player()
+		player = new PlayChar()
 
 		for (let i: number = 0; i < 11; i++) {
 			let fish: Fish = new Fish();
