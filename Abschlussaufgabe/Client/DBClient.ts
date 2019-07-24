@@ -44,6 +44,12 @@ namespace game {
                 allPlayersArray.sort(rankPlayers);
             }
 
+            for (let i: number = 0; i < 10; i++) {
+                let newPlayer = document.createElement("div");
+                document.getElementById("scoreBoard").appendChild(newPlayer);
+                newPlayer.innerHTML = `<div>${allPlayersArray[i].name} : ${allPlayersArray[i].score}</div>`;
+            }
+
             let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
             let responseAsJson: JSON = JSON.parse(xhr.response);
@@ -52,8 +58,14 @@ namespace game {
     }
 
     function rankPlayers(_1: Player, _2: Player): number {
-        let score1 :number = _1.score;
-        let score2 : number = _2.score;
-        return score1 + score2;
+        let score1: number = _1.score;
+        let score2: number = _2.score;
+        if (score1 < score2) {
+            return 1;
+        }
+        if (score1 > score2) {
+            return -1;
+        }
+        return 0;
     }
 }
