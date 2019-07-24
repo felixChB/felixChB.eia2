@@ -8,7 +8,6 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 namespace DBClient {
     window.addEventListener("load", init);
     let serverAddress: string = "https://eia2-eisserver.herokuapp.com/";
-    // let serverAddress: string = "https://eia2-testserver.herokuapp.com/";
 
     function init(_event: Event): void {
         console.log("Init");

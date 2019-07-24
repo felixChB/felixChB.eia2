@@ -7,6 +7,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 
 namespace game {
 	document.addEventListener("DOMContentLoaded", init);
+	let serverAddress: string = "https://eia2-endgame.herokuapp.com/";
 	export let crc: CanvasRenderingContext2D;
 	export let canvas: HTMLCanvasElement;
 	let allObj: GameObj[] = [];
@@ -199,15 +200,55 @@ namespace game {
 				} else {
 					gameOver();
 				}
-
 			}
 		}
 	}
 
 	function gameOver(): void {
 		window.clearTimeout(window.setTimeout(update, 1000 / fps));
-		prompt("Game Over!" + "Dein Score: " + score);
-		location.reload();
-		console.log(score + "lo");
+		let nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
+		nameAndScore(nameImput);
+		showBoard();
+
+		//location.reload();
 	}
-}
+
+	function nameAndScore(_i:string): void {
+		console.log(_i);
+		let query: string = "command=insert";
+		query += "&name=" + _i;
+		query += "&score=" + score;
+		console.log(query);
+		sendRequest(query, handleInsertResponse);
+	}
+
+	function showBoard(): void {
+		let query: string = "command=refresh";
+		sendRequest(query, handleFindResponse);
+	}
+
+	function sendRequest(_query: string, _callback: EventListener): void {
+		let xhr: XMLHttpRequest = new XMLHttpRequest();
+		xhr.open("GET", serverAddress + "?" + _query, true);
+		xhr.addEventListener("readystatechange", _callback);
+		xhr.send();
+	}
+
+	function handleInsertResponse(_event: ProgressEvent): void {
+		let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			alert(xhr.response);
+		}
+	}
+
+	function handleFindResponse(_event: ProgressEvent): void {
+		let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+			output.value = xhr.response;
+			let responseAsJson: JSON = JSON.parse(xhr.response);
+			console.log(responseAsJson);
+		}
+	}
+
+} 

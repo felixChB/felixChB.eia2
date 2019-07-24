@@ -7,6 +7,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 var game;
 (function (game) {
     document.addEventListener("DOMContentLoaded", init);
+    let serverAddress = "https://eia2-endgame.herokuapp.com/";
     let allObj = [];
     let fps = 30;
     let imageData;
@@ -179,9 +180,43 @@ var game;
     }
     function gameOver() {
         window.clearTimeout(window.setTimeout(update, 1000 / fps));
-        prompt("Game Over!" + "Dein Score: " + score);
-        location.reload();
-        console.log(score + "lo");
+        let nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
+        nameAndScore(nameImput);
+        showBoard();
+        //location.reload();
+    }
+    function nameAndScore(_i) {
+        console.log(_i);
+        let query = "command=insert";
+        query += "&name=" + _i;
+        query += "&score=" + score;
+        console.log(query);
+        sendRequest(query, handleInsertResponse);
+    }
+    function showBoard() {
+        let query = "command=refresh";
+        sendRequest(query, handleFindResponse);
+    }
+    function sendRequest(_query, _callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", _callback);
+        xhr.send();
+    }
+    function handleInsertResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
+        }
+    }
+    function handleFindResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let output = document.getElementsByTagName("textarea")[0];
+            output.value = xhr.response;
+            let responseAsJson = JSON.parse(xhr.response);
+            console.log(responseAsJson);
+        }
     }
 })(game || (game = {}));
 //# sourceMappingURL=canvas.js.map
