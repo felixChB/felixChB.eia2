@@ -7,13 +7,12 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 var game;
 (function (game) {
     document.addEventListener("DOMContentLoaded", init);
-    let serverAddress = "https://eia2-endgame.herokuapp.com/";
+    game.serverAddress = "https://eia2-endgame.herokuapp.com/";
+    game.score = 0;
     let allObj = [];
     let fps = 30;
     let imageData;
     let player;
-    let score = 0;
-    let nameImput;
     let timeout;
     function init() {
         game.canvas = document.getElementsByTagName("canvas")[0];
@@ -56,7 +55,7 @@ var game;
         collide();
         game.crc.fillStyle = "black";
         game.crc.font = "30px Arial";
-        game.crc.fillText("Score: " + score.toString(), 840, 40);
+        game.crc.fillText("Score: " + game.score.toString(), 840, 40);
     }
     function drawBackground() {
         drawWater();
@@ -172,7 +171,7 @@ var game;
                 if (player.h > o.h) {
                     allObj.splice(i, 1);
                     player.h += 4;
-                    score += 10;
+                    game.score += 10;
                 }
                 else {
                     gameOver();
@@ -182,43 +181,10 @@ var game;
     }
     function gameOver() {
         window.clearTimeout(timeout);
-        nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
-        insert();
-        refresh();
+        game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
+        game.insert();
+        game.refresh();
         //location.reload();
-    }
-    function insert() {
-        console.log(nameImput);
-        let query = "command=insert";
-        query += "&name=" + nameImput;
-        query += "&score=" + score;
-        console.log(query);
-        sendRequest(query, handleInsertResponse);
-    }
-    function refresh() {
-        let query = "command=refresh";
-        sendRequest(query, handleFindResponse);
-    }
-    function sendRequest(_query, _callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query, true);
-        xhr.addEventListener("readystatechange", _callback);
-        xhr.send();
-    }
-    function handleInsertResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
-        }
-    }
-    function handleFindResponse(_event) {
-        let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
-        }
     }
 })(game || (game = {}));
 //# sourceMappingURL=canvas.js.map
