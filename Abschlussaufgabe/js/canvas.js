@@ -14,6 +14,7 @@ var game;
     let player;
     let score = 0;
     let nameImput;
+    let timeout;
     function init() {
         game.canvas = document.getElementsByTagName("canvas")[0];
         game.crc = game.canvas.getContext("2d");
@@ -45,7 +46,7 @@ var game;
         update();
     }
     function update() {
-        window.setTimeout(update, 1000 / fps);
+        timeout = window.setTimeout(update, 1000 / fps);
         game.crc.clearRect(0, 0, game.canvas.width, game.canvas.height);
         game.crc.putImageData(imageData, 0, 0);
         for (let i = 0; i < allObj.length; i++) {
@@ -180,7 +181,7 @@ var game;
         }
     }
     function gameOver() {
-        window.clearTimeout(window.setTimeout(update, 1000 / fps));
+        window.clearTimeout(timeout);
         nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
         insert();
         refresh();

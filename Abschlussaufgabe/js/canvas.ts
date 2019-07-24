@@ -16,6 +16,7 @@ namespace game {
 	let player: Player;
 	let score: number = 0;
 	let nameImput: string;
+	let timeout: number;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
@@ -56,7 +57,7 @@ namespace game {
 	}
 
 	function update(): void {
-		window.setTimeout(update, 1000 / fps);
+		timeout = window.setTimeout(update, 1000 / fps);
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		crc.putImageData(imageData, 0, 0);
 
@@ -206,7 +207,7 @@ namespace game {
 	}
 
 	function gameOver(): void {
-		window.clearTimeout(window.setTimeout(update, 1000 / fps));
+		window.clearTimeout(timeout);
 		nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
 		insert();
 		refresh();
