@@ -19,11 +19,14 @@ header {
 }
 #scoreBoard{
     display: block;
-    background-color: blue;
+    background-color: black;
     color: white;
     position: fixed;
     top: 0;
     right: 10rem;
     width: 15rem;
     height: 25rem;
+}
+#scoreBoard div{
+    margin: 5px 5px 5px 5px;
 }

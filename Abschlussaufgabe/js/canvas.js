@@ -22,6 +22,7 @@ var game;
         document.addEventListener("keydown", moving);
         document.addEventListener("keyup", deMoving);
         document.addEventListener("keydown", shoot);
+        game.refresh();
         player = new game.PlayChar();
         for (let i = 0; i < 11; i++) {
             let fish = new game.Fish();
@@ -53,6 +54,10 @@ var game;
         }
         player.update();
         collide();
+        if (game.score == 170) {
+            game.nameImput = prompt("You win! " + "Dein Score: " + game.score, "Your Player-Name");
+            gameOver();
+        }
         game.crc.fillStyle = "black";
         game.crc.font = "30px Arial";
         game.crc.fillText("Score: " + game.score.toString(), 840, 40);
@@ -174,6 +179,7 @@ var game;
                     game.score += 10;
                 }
                 else {
+                    game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
                     gameOver();
                 }
             }
@@ -181,7 +187,6 @@ var game;
     }
     function gameOver() {
         window.clearTimeout(timeout);
-        game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
         game.insert();
         game.refresh();
         //location.reload();

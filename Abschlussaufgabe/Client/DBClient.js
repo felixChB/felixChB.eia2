@@ -39,24 +39,24 @@ var game;
             for (let i = 0; i < allPlayersArray.length; i++) {
                 allPlayersArray.sort(rankPlayers);
             }
+            document.getElementById("scoreBoard").innerHTML = "";
             for (let i = 0; i < 10; i++) {
                 let newPlayer = document.createElement("div");
                 document.getElementById("scoreBoard").appendChild(newPlayer);
-                newPlayer.innerHTML = `<div>${allPlayersArray[i].name} : ${allPlayersArray[i].score}</div>`;
+                newPlayer.setAttribute("id", i.toString());
+                newPlayer.innerHTML = `${allPlayersArray[i].name} : ${allPlayersArray[i].score}`;
             }
-            let output = document.getElementsByTagName("textarea")[0];
+            /* let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            let responseAsJson: JSON = JSON.parse(xhr.response);
+            console.log(responseAsJson); */
         }
     }
     function rankPlayers(_1, _2) {
-        let score1 = _1.score;
-        let score2 = _2.score;
-        if (score1 < score2) {
+        if (_1.score < _2.score) {
             return 1;
         }
-        if (score1 > score2) {
+        if (_1.score > _2.score) {
             return -1;
         }
         return 0;

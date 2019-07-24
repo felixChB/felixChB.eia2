@@ -38,32 +38,33 @@ namespace game {
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-
             let allPlayersArray: Player[] = JSON.parse(xhr.response);
             for (let i: number = 0; i < allPlayersArray.length; i++) {
                 allPlayersArray.sort(rankPlayers);
             }
 
+            document.getElementById("scoreBoard").innerHTML = "";
+
             for (let i: number = 0; i < 10; i++) {
                 let newPlayer = document.createElement("div");
                 document.getElementById("scoreBoard").appendChild(newPlayer);
-                newPlayer.innerHTML = `<div>${allPlayersArray[i].name} : ${allPlayersArray[i].score}</div>`;
+                newPlayer.setAttribute("id", i.toString());
+                newPlayer.innerHTML = `${allPlayersArray[i].name} : ${allPlayersArray[i].score}`;
             }
 
-            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+            /* let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
             output.value = xhr.response;
             let responseAsJson: JSON = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            console.log(responseAsJson); */
         }
     }
 
     function rankPlayers(_1: Player, _2: Player): number {
-        let score1: number = _1.score;
-        let score2: number = _2.score;
-        if (score1 < score2) {
+
+        if (_1.score < _2.score) {
             return 1;
         }
-        if (score1 > score2) {
+        if (_1.score > _2.score) {
             return -1;
         }
         return 0;

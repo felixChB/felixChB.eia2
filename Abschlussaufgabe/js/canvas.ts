@@ -30,6 +30,8 @@ namespace game {
 		document.addEventListener("keyup", deMoving);
 		document.addEventListener("keydown", shoot);
 
+		refresh();
+
 		player = new PlayChar()
 
 		for (let i: number = 0; i < 11; i++) {
@@ -67,6 +69,10 @@ namespace game {
 
 		player.update();
 		collide();
+		if (score == 170) {
+			nameImput = prompt("You win! " + "Dein Score: " + score, "Your Player-Name");
+			gameOver();
+		}
 
 		crc.fillStyle = "black";
 		crc.font = "30px Arial";
@@ -200,6 +206,7 @@ namespace game {
 					player.h += 4;
 					score += 10;
 				} else {
+					nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
 					gameOver();
 				}
 			}
@@ -208,7 +215,6 @@ namespace game {
 
 	function gameOver(): void {
 		window.clearTimeout(timeout);
-		nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
 		insert();
 		refresh();
 
