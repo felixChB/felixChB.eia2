@@ -22,47 +22,40 @@ namespace game {
 		}
 
 		draw(): void {
+
+			let wings: Path2D = new Path2D();
+			wings.moveTo(this.x + 5, this.y - 10);
+			wings.lineTo(this.x - 7, this.y - 40);
+			wings.lineTo(this.x - 20, this.y - 40);
+			wings.lineTo(this.x - 15, this.y - 10);
+			wings.lineTo(this.x, this.y - 10);
+
+			wings.moveTo(this.x + 5, this.y + 10);
+			wings.lineTo(this.x - 7, this.y + 40);
+			wings.lineTo(this.x - 20, this.y + 40);
+			wings.lineTo(this.x - 15, this.y + 10);
+			wings.lineTo(this.x, this.y + 10);
+			crc.fillStyle = "blue";
+			crc.strokeStyle = "black";
+			crc.fill(wings);
+			crc.stroke(wings);
+
 			let body: Path2D = new Path2D();
-			body.ellipse(this.x, this.y, 20, 40, 30, 0, 2 * Math.PI);
-			crc.lineWidth = 1;
-			crc.fillStyle = `rgba(${(255)}, ${(255)}, ${(255)})`;
-			crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
+			body.moveTo(this.x, this.y);
+			body.moveTo(this.x + 30, this.y);
+			body.lineTo(this.x, this.y - 15);
+			body.lineTo(this.x - 10, this.y - 15);
+			body.lineTo(this.x - 25, this.y - 10);
+			body.lineTo(this.x - 25, this.y + 10);
+			body.lineTo(this.x, this.y + 15);
+			body.lineTo(this.x - 10, this.y + 15);
+			body.lineTo(this.x + 30, this.y);
+			crc.fillStyle = "grey";
+			crc.strokeStyle = "black";
 			crc.fill(body);
 			crc.stroke(body);
 
-			let flosse: Path2D = new Path2D();
-			crc.beginPath();
-			flosse.moveTo(this.x - 35, this.y - 7);
-			flosse.lineTo(this.x - 80, this.y - 30);
-			flosse.lineTo(this.x - 85, this.y + 20);
-			crc.closePath();
-			crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.fill(flosse);
-			crc.stroke(flosse);
-
-			let fishEye: Path2D = new Path2D();
-			fishEye.arc(this.x + 28, this.y, 5, 0, 2 * Math.PI);
-			crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.fill(fishEye);
-			crc.stroke(fishEye);
-
-			let fishPupille: Path2D = new Path2D();
-			fishPupille.arc(this.x + 30, this.y, 3, 0, 2 * Math.PI);
-			crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-			crc.fill(fishPupille);
-			crc.stroke(fishPupille);
-
-			let fishMouth: Path2D = new Path2D();
-			fishMouth.moveTo(this.x + 38, this.y + 12);
-			fishMouth.lineTo(this.x + 36, this.y + 8);
-			fishMouth.lineTo(this.x + 34, this.y + 12);
-			fishMouth.lineTo(this.x + 32, this.y + 8);
-			fishMouth.lineTo(this.x + 30, this.y + 12);
-			fishMouth.lineTo(this.x + 28, this.y + 8);
-			crc.stroke(fishMouth);
+			
 
 			let hitboxP: Path2D = new Path2D();
 			hitboxP.arc(this.x, this.y, this.h, 0, 2 * Math.PI);

@@ -9,18 +9,16 @@ var game;
     class BubbleShot extends game.GameObj {
         constructor() {
             super();
-            this.dx = 0;
-            this.dy = Math.random() * (-5) - 2;
-            this.r = (Math.random() * (15 - 5) + 5);
-            this.t = Math.random();
-            this.color = `rgba(167, 211, 223, ${this.t})`;
+            this.dx = 20;
+            this.dy = 0;
+            this.r = 10;
         }
         draw() {
             let bubble = new Path2D();
             bubble.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
             game.crc.lineWidth = 2;
-            game.crc.fillStyle = "red";
-            game.crc.strokeStyle = this.color;
+            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
+            game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
             game.crc.fill(bubble);
             game.crc.stroke(bubble);
         }

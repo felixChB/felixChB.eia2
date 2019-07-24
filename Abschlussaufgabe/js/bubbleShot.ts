@@ -8,24 +8,20 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 namespace game {
 	export class BubbleShot extends GameObj {
 		r: number;
-		t: number;
-		color: string;
 
 		constructor() {
 			super();
-			this.dx = 0;
-			this.dy = Math.random() * (-5) - 2;
-			this.r = (Math.random() * (15 - 5) + 5);
-			this.t = Math.random();
-			this.color = `rgba(167, 211, 223, ${this.t})`;
+			this.dx = 20;
+			this.dy = 0;
+			this.r = 10;
 		}
 
 		draw(): void {
 			let bubble: Path2D = new Path2D();
 			bubble.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
 			crc.lineWidth = 2;
-			crc.fillStyle = "red";
-			crc.strokeStyle = this.color;
+			crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
+			crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
 			crc.fill(bubble);
 			crc.stroke(bubble);
 		}
