@@ -14,7 +14,8 @@ header {
     width: 100%;
 }
 #game {
-    text-align: center;
+    margin-left: 5rem;
+    /* text-align: center; */
 }
 #scoreBoard{
     display: block;
@@ -22,7 +23,7 @@ header {
     color: white;
     position: fixed;
     top: 0;
-    right: 0;
-    width: 10rem;
-    height: 10rem;
+    right: 10rem;
+    width: 15rem;
+    height: 25rem;
 }

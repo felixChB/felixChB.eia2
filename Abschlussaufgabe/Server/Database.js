@@ -27,7 +27,7 @@ function handleConnect(_e, _client) {
     else {
         console.log("Connected to database!");
         db = _client.db(databaseName);
-        players = db.collection("Scoreboard");
+        players = db.collection("players");
     }
 }
 function insert(_doc) {
