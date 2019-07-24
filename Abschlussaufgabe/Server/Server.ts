@@ -29,7 +29,7 @@ function handleListen(): void {
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
 
-    let query: Scoreboard = <Scoreboard> Url.parse(_request.url, true).query;
+    let query: Scoreboard = <Scoreboard>Url.parse(_request.url, true).query;
     let command: string = query["command"];
     /* let Matrikel: string = query["score"]; */
 
@@ -42,6 +42,10 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             Database.insert(player);
             respond(_response, "storing data");
             break;
+        /* case "finde":
+            let suche: string = query["finde"];
+            Database.searchMatrikel(findCallback, suche);
+            break; */
         case "refresh":
             Database.findAll(findCallback);
             break;

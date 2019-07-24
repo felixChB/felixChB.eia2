@@ -9,7 +9,7 @@ import * as Mongo from "mongodb";
 console.log("Database starting");
 
 let databaseURL: string = "mongodb://localhost:27017";
-let databaseName: string = "Scores";
+let databaseName: string = "test";
 let db: Mongo.Db;
 let players: Mongo.Collection;
 
@@ -30,7 +30,7 @@ function handleConnect(_e: Mongo.MongoError, _client: Mongo.MongoClient): void {
     else {
         console.log("Connected to database!");
         db = _client.db(databaseName);
-        players = db.collection("players");
+        players = db.collection("Scoreboard");
     }
 }
 
@@ -53,12 +53,12 @@ export function findAll(_callback: Function): void {
 
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e: Mongo.MongoError, playerArray: Player[]): void {
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: Player[]): void {
         if (_e)
             _callback("Error" + _e);
         else
             // stringify creates a json-string, passed it back to _callback
-            _callback(JSON.stringify(playerArray));
+            _callback(JSON.stringify(studentArray));
     }
 }
 /* export function searchMatrikel(_score: number, _callback: Function): void {

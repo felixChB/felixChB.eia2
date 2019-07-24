@@ -34,6 +34,10 @@ function handleRequest(_request, _response) {
             Database.insert(player);
             respond(_response, "storing data");
             break;
+        /* case "finde":
+            let suche: string = query["finde"];
+            Database.searchMatrikel(findCallback, suche);
+            break; */
         case "refresh":
             Database.findAll(findCallback);
             break;

@@ -13,6 +13,7 @@ var game;
     let imageData;
     let player;
     let score = 0;
+    let nameImput;
     function init() {
         game.canvas = document.getElementsByTagName("canvas")[0];
         game.crc = game.canvas.getContext("2d");
@@ -180,20 +181,20 @@ var game;
     }
     function gameOver() {
         window.clearTimeout(window.setTimeout(update, 1000 / fps));
-        let nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
-        nameAndScore(nameImput);
-        showBoard();
+        nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
+        insert();
+        refresh();
         //location.reload();
     }
-    function nameAndScore(_i) {
-        console.log(_i);
+    function insert() {
+        console.log(nameImput);
         let query = "command=insert";
-        query += "&name=" + _i;
+        query += "&name=" + nameImput;
         query += "&score=" + score;
         console.log(query);
         sendRequest(query, handleInsertResponse);
     }
-    function showBoard() {
+    function refresh() {
         let query = "command=refresh";
         sendRequest(query, handleFindResponse);
     }

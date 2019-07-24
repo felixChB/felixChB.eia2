@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Mongo = require("mongodb");
 console.log("Database starting");
 let databaseURL = "mongodb://localhost:27017";
-let databaseName = "Scores";
+let databaseName = "test";
 let db;
 let players;
 // running on heroku?
@@ -27,7 +27,7 @@ function handleConnect(_e, _client) {
     else {
         console.log("Connected to database!");
         db = _client.db(databaseName);
-        players = db.collection("players");
+        players = db.collection("Scoreboard");
     }
 }
 function insert(_doc) {
@@ -47,12 +47,12 @@ function findAll(_callback) {
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e, playerArray) {
+    function prepareAnswer(_e, studentArray) {
         if (_e)
             _callback("Error" + _e);
         else
             // stringify creates a json-string, passed it back to _callback
-            _callback(JSON.stringify(playerArray));
+            _callback(JSON.stringify(studentArray));
     }
 }
 exports.findAll = findAll;

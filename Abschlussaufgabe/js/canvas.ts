@@ -15,6 +15,7 @@ namespace game {
 	let imageData: ImageData;
 	let player: Player;
 	let score: number = 0;
+	let nameImput: string;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
@@ -206,23 +207,23 @@ namespace game {
 
 	function gameOver(): void {
 		window.clearTimeout(window.setTimeout(update, 1000 / fps));
-		let nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
-		nameAndScore(nameImput);
-		showBoard();
+		nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
+		insert();
+		refresh();
 
 		//location.reload();
 	}
 
-	function nameAndScore(_i:string): void {
-		console.log(_i);
+	function insert(): void {
+		console.log(nameImput);
 		let query: string = "command=insert";
-		query += "&name=" + _i;
+		query += "&name=" + nameImput;
 		query += "&score=" + score;
 		console.log(query);
 		sendRequest(query, handleInsertResponse);
 	}
 
-	function showBoard(): void {
+	function refresh(): void {
 		let query: string = "command=refresh";
 		sendRequest(query, handleFindResponse);
 	}
