@@ -14,12 +14,12 @@ namespace game {
 		constructor() {
 			super();
 			this.x = Math.random() * canvas.width;
-			this.y = Math.random() * canvas.height;
-			this.dx = Math.random() * (-20) - 15;
-			this.dy = 0;
-			this.r = (Math.random() * (60 - 5) + 30);
-			this.t = Math.random() * 0.8;
-			this.color = `rgb(133, 133, 173, ${this.t})`;
+			this.y = Math.random() * canvas.height - 70;
+			this.dx = 0;
+			this.dy = Math.random() * (-5) - 2;
+			this.r = (Math.random() * (15 - 5) + 5);
+			this.t = Math.random();
+			this.color = `rgba(167, 211, 223, ${this.t})`;
 		}
 
 		draw(): void {
@@ -34,10 +34,8 @@ namespace game {
 
 		move(): void {
 			super.move();
-			if (this.x < -25) {
-				this.x = canvas.width + 25;
-				this.y = Math.random() * canvas.height;
-				this.dx = Math.random() * (-20) - 15;
+			if (this.y < -25) {
+				this.y = 525;
 			}
 		}
 	}

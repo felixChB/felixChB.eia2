@@ -159,7 +159,7 @@ var game;
             console.log("shoot");
             let x = player.x;
             let y = player.y;
-            let shot = new game.Shot();
+            let shot = new game.BubbleShot();
             shot.x = x + 10;
             shot.y = y;
             allObj.push(shot);

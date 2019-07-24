@@ -184,7 +184,7 @@ namespace game {
 			console.log("shoot");
 			let x: number = player.x;
 			let y: number = player.y;
-			let shot: Shot = new Shot();
+			let shot: BubbleShot = new BubbleShot();
 			shot.x = x + 10;
 			shot.y = y;
 			allObj.push(shot);

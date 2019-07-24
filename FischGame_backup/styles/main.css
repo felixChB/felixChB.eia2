@@ -1,0 +1,32 @@
+html, body {
+    margin: 3rem 0 0 0;
+    padding: 0;
+}
+header {
+    background-color: aqua;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+}
+#game {
+    margin-left: 5rem;
+    /* text-align: center; */
+}
+#scoreBoard{
+    display: block;
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 10rem;
+    width: 15rem;
+    height: 25rem;
+}
+#scoreBoard div{
+    margin: 5px 5px 5px 5px;
+}
