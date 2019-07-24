@@ -47,12 +47,12 @@ function findAll(_callback) {
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope
-    function prepareAnswer(_e, studentArray) {
+    function prepareAnswer(_e, playerArray) {
         if (_e)
             _callback("Error" + _e);
         else
             // stringify creates a json-string, passed it back to _callback
-            _callback(JSON.stringify(studentArray));
+            _callback(JSON.stringify(playerArray));
     }
 }
 exports.findAll = findAll;
