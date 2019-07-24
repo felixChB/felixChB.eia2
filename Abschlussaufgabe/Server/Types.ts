@@ -8,7 +8,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 interface Scoreboard {
     [key: string]: string;
 }
-
+//test
 interface Player {
     name: string;
     score: number;
