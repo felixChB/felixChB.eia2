@@ -61,7 +61,7 @@ export function findAll(_callback: Function): void {
             _callback(JSON.stringify(playerArray));
     }
 }
-export function searchMatrikel(_score: number, _callback: Function): void {
+/* export function searchMatrikel(_score: number, _callback: Function): void {
     var cursor: Mongo.Cursor = players.find({ score: _score });
     cursor.toArray(prepareAnswer);
 
@@ -74,4 +74,4 @@ export function searchMatrikel(_score: number, _callback: Function): void {
             // stringify creates a json-string, passed it back to _callback
             _callback(JSON.stringify(playerArray));
     }
-}
+} */
