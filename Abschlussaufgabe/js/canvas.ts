@@ -75,9 +75,17 @@ namespace game {
 			shots[i].update();
 		}
 
+
+		for (let i: number = 0; i < shots.length; i++) {
+			if (shots[i].x > canvas.width) {
+				shots.splice(i, 1);
+				console.log("raus");
+			}
+		}
+
 		player.update();
 		collide();
-		/* destroy(); */
+		destroy();
 
 		score++;
 
@@ -104,13 +112,6 @@ namespace game {
 		crc.lineWidth = 200;
 		crc.strokeStyle = "blue";
 		crc.stroke(fluss);
-
-		let earth2: Path2D = new Path2D();
-		earth2.moveTo((-50), 100);
-		earth2.bezierCurveTo(200, 20, 600, 250, 1050, 100);
-		crc.lineWidth = 30;
-		crc.strokeStyle = "darkgrey";
-		crc.stroke(earth2);
 	}
 
 	function moving(_e: KeyboardEvent): void {
@@ -162,21 +163,52 @@ namespace game {
 		}
 	}
 
-	/* function destroy(): void {
+	function destroy(): void {
 
 		for (let i: number = 0; i < allObj.length; i++) {
 			if (allObj[i] instanceof Fish) {
 				let thisFish: Fish = allObj[i];
-				for (let j: number = 0; j < shots.length; i++) {
-					if (crc.isPointInPath(thisFish.hitbox, allObj[j].h, allObj[j].y)) {
+				for (let j: number = 0; j < shots.length; j++) {
+					console.log("shats");
+					let abstandX = thisFish.x - shots[j].x;
+					let abstandY = thisFish.y - shots[j].y;
+					let abstand: number = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
+					let hitboxAbstand: number = abstand - thisFish.h;
+					if (hitboxAbstand < 0) {
+
+						let exp: Path2D = new Path2D();
+						exp.arc(allObj[i].x, allObj[i].y, 40, 0, 2 * Math.PI);
+						crc.lineWidth = 2;
+						crc.fillStyle = "black";
+						crc.strokeStyle = "black";
+						crc.fill(exp);
+						crc.stroke(exp);
+						let exp2: Path2D = new Path2D();
+						exp2.arc(allObj[i].x, allObj[i].y, 30, 0, 2 * Math.PI);
+						crc.lineWidth = 2;
+						crc.fillStyle = "red";
+						crc.strokeStyle = "red";
+						crc.fill(exp2);
+						crc.stroke(exp2);
+						let exp3: Path2D = new Path2D();
+						exp3.arc(allObj[i].x, allObj[i].y, 15, 0, 2 * Math.PI);
+						crc.lineWidth = 2;
+						crc.fillStyle = "yellow";
+						crc.strokeStyle = "yellow";
+						crc.fill(exp3);
+						crc.stroke(exp3);
+
 						allObj.splice(i, 1);
 						shots.splice(j, 1);
+						let fish: Fish = new Fish();
+						allObj.push(fish);
+						console.log("destroy");
 					}
 				}
 			}
 		}
 
-		for (let i: number = 0; i < allObj.length; i++) {
+		/* for (let i: number = 0; i < allObj.length; i++) {
 			if (allObj[i] instanceof Fish) {
 				let thisFish: Fish = allObj[i];
 				for (let j: number = 0; j < allObj.length; i++) {
@@ -193,8 +225,8 @@ namespace game {
 					}
 				}
 			}
-		}
-	} */
+		} */
+	}
 
 	function collide(): void {
 		for (let i: number = 0; i < allObj.length; i++) {
@@ -245,7 +277,7 @@ namespace game {
 					crc.stroke(exp3);
 
 					allObj.splice(i, 1);
-					score += 100;
+					score -= 50;
 
 					let fish: Fish = new Fish();
 					allObj.push(fish);

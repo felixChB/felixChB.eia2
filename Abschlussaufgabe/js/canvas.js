@@ -58,9 +58,15 @@ var game;
         for (let i = 0; i < shots.length; i++) {
             shots[i].update();
         }
+        for (let i = 0; i < shots.length; i++) {
+            if (shots[i].x > game.canvas.width) {
+                shots.splice(i, 1);
+                console.log("raus");
+            }
+        }
         player.update();
         collide();
-        /* destroy(); */
+        destroy();
         game.score++;
         game.crc.fillStyle = "black";
         game.crc.font = "30px Righteous";
@@ -82,12 +88,6 @@ var game;
         game.crc.lineWidth = 200;
         game.crc.strokeStyle = "blue";
         game.crc.stroke(fluss);
-        let earth2 = new Path2D();
-        earth2.moveTo((-50), 100);
-        earth2.bezierCurveTo(200, 20, 600, 250, 1050, 100);
-        game.crc.lineWidth = 30;
-        game.crc.strokeStyle = "darkgrey";
-        game.crc.stroke(earth2);
     }
     function moving(_e) {
         let pressedKey = _e.which;
@@ -135,21 +135,48 @@ var game;
             shots.push(shot);
         }
     }
-    /* function destroy(): void {
-
-        for (let i: number = 0; i < allObj.length; i++) {
-            if (allObj[i] instanceof Fish) {
-                let thisFish: Fish = allObj[i];
-                for (let j: number = 0; j < shots.length; i++) {
-                    if (crc.isPointInPath(thisFish.hitbox, allObj[j].h, allObj[j].y)) {
+    function destroy() {
+        for (let i = 0; i < allObj.length; i++) {
+            if (allObj[i] instanceof game.Fish) {
+                let thisFish = allObj[i];
+                for (let j = 0; j < shots.length; j++) {
+                    console.log("shats");
+                    let abstandX = thisFish.x - shots[j].x;
+                    let abstandY = thisFish.y - shots[j].y;
+                    let abstand = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
+                    let hitboxAbstand = abstand - thisFish.h;
+                    if (hitboxAbstand < 0) {
+                        let exp = new Path2D();
+                        exp.arc(allObj[i].x, allObj[i].y, 40, 0, 2 * Math.PI);
+                        game.crc.lineWidth = 2;
+                        game.crc.fillStyle = "black";
+                        game.crc.strokeStyle = "black";
+                        game.crc.fill(exp);
+                        game.crc.stroke(exp);
+                        let exp2 = new Path2D();
+                        exp2.arc(allObj[i].x, allObj[i].y, 30, 0, 2 * Math.PI);
+                        game.crc.lineWidth = 2;
+                        game.crc.fillStyle = "red";
+                        game.crc.strokeStyle = "red";
+                        game.crc.fill(exp2);
+                        game.crc.stroke(exp2);
+                        let exp3 = new Path2D();
+                        exp3.arc(allObj[i].x, allObj[i].y, 15, 0, 2 * Math.PI);
+                        game.crc.lineWidth = 2;
+                        game.crc.fillStyle = "yellow";
+                        game.crc.strokeStyle = "yellow";
+                        game.crc.fill(exp3);
+                        game.crc.stroke(exp3);
                         allObj.splice(i, 1);
                         shots.splice(j, 1);
+                        let fish = new game.Fish();
+                        allObj.push(fish);
+                        console.log("destroy");
                     }
                 }
             }
         }
-
-        for (let i: number = 0; i < allObj.length; i++) {
+        /* for (let i: number = 0; i < allObj.length; i++) {
             if (allObj[i] instanceof Fish) {
                 let thisFish: Fish = allObj[i];
                 for (let j: number = 0; j < allObj.length; i++) {
@@ -166,8 +193,8 @@ var game;
                     }
                 }
             }
-        }
-    } */
+        } */
+    }
     function collide() {
         for (let i = 0; i < allObj.length; i++) {
             let o = allObj[i];
@@ -212,7 +239,7 @@ var game;
                     game.crc.fill(exp3);
                     game.crc.stroke(exp3);
                     allObj.splice(i, 1);
-                    game.score += 100;
+                    game.score -= 50;
                     let fish = new game.Fish();
                     allObj.push(fish);
                     if (player.life == 0) {
