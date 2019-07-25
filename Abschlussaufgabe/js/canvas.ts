@@ -69,10 +69,10 @@ namespace game {
 		player.update();
 		collide();
 		/* destroy(); */
-		if (score == 170) {
+		/* if (score == 170) {
 			nameImput = prompt("You win! " + "Dein Score: " + score, "Your Player-Name");
 			gameOver();
-		}
+		} */
 
 		crc.fillStyle = "black";
 		crc.font = "30px Righteous";
@@ -182,9 +182,10 @@ namespace game {
 				if (o instanceof Crab) {
 					player.life++;
 					player.h += 5;
-					score++;
+					score += 10;
 					console.log(player.life);
 					allObj.splice(i, 1);
+
 					if (player.life <= 5) {
 						let crab: Crab = new Crab();
 						allObj.push(crab);
@@ -193,7 +194,32 @@ namespace game {
 				if (o instanceof Fish) {
 					player.life--;
 					player.h -= 5;
+
+					let exp: Path2D = new Path2D();
+					exp.arc(allObj[i].x, allObj[i].y, 40, 0, 2 * Math.PI);
+					crc.lineWidth = 2;
+					crc.fillStyle = "black";
+					crc.strokeStyle = "black";
+					crc.fill(exp);
+					crc.stroke(exp);
+					let exp2: Path2D = new Path2D();
+					exp2.arc(allObj[i].x, allObj[i].y, 30, 0, 2 * Math.PI);
+					crc.lineWidth = 2;
+					crc.fillStyle = "red";
+					crc.strokeStyle = "red";
+					crc.fill(exp2);
+					crc.stroke(exp2);
+					let exp3: Path2D = new Path2D();
+					exp3.arc(allObj[i].x, allObj[i].y, 15, 0, 2 * Math.PI);
+					crc.lineWidth = 2;
+					crc.fillStyle = "yellow";
+					crc.strokeStyle = "yellow";
+					crc.fill(exp3);
+					crc.stroke(exp3);
+
 					allObj.splice(i, 1);
+					score += 20;
+
 					let fish: Fish = new Fish();
 					allObj.push(fish);
 					if (player.life == 0) {

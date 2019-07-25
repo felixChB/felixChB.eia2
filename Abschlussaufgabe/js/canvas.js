@@ -54,10 +54,10 @@ var game;
         player.update();
         collide();
         /* destroy(); */
-        if (game.score == 170) {
-            game.nameImput = prompt("You win! " + "Dein Score: " + game.score, "Your Player-Name");
+        /* if (score == 170) {
+            nameImput = prompt("You win! " + "Dein Score: " + score, "Your Player-Name");
             gameOver();
-        }
+        } */
         game.crc.fillStyle = "black";
         game.crc.font = "30px Righteous";
         game.crc.fillText("Score: " + game.score.toString(), 840, 40);
@@ -156,7 +156,7 @@ var game;
                 if (o instanceof game.Crab) {
                     player.life++;
                     player.h += 5;
-                    game.score++;
+                    game.score += 10;
                     console.log(player.life);
                     allObj.splice(i, 1);
                     if (player.life <= 5) {
@@ -167,7 +167,29 @@ var game;
                 if (o instanceof game.Fish) {
                     player.life--;
                     player.h -= 5;
+                    let exp = new Path2D();
+                    exp.arc(allObj[i].x, allObj[i].y, 40, 0, 2 * Math.PI);
+                    game.crc.lineWidth = 2;
+                    game.crc.fillStyle = "black";
+                    game.crc.strokeStyle = "black";
+                    game.crc.fill(exp);
+                    game.crc.stroke(exp);
+                    let exp2 = new Path2D();
+                    exp2.arc(allObj[i].x, allObj[i].y, 30, 0, 2 * Math.PI);
+                    game.crc.lineWidth = 2;
+                    game.crc.fillStyle = "red";
+                    game.crc.strokeStyle = "red";
+                    game.crc.fill(exp2);
+                    game.crc.stroke(exp2);
+                    let exp3 = new Path2D();
+                    exp3.arc(allObj[i].x, allObj[i].y, 15, 0, 2 * Math.PI);
+                    game.crc.lineWidth = 2;
+                    game.crc.fillStyle = "yellow";
+                    game.crc.strokeStyle = "yellow";
+                    game.crc.fill(exp3);
+                    game.crc.stroke(exp3);
                     allObj.splice(i, 1);
+                    game.score += 20;
                     let fish = new game.Fish();
                     allObj.push(fish);
                     if (player.life == 0) {

@@ -26,17 +26,17 @@ namespace game {
 		draw(): void {
 
 			let wings: Path2D = new Path2D();
-			wings.moveTo(this.x + 5, this.y - 10);
-			wings.lineTo(this.x - 7, this.y - 40);
-			wings.lineTo(this.x - 20, this.y - 40);
-			wings.lineTo(this.x - 15, this.y - 10);
-			wings.lineTo(this.x, this.y - 10);
+			wings.moveTo(this.x + 5 + (this.h / 5), this.y - 10 - (this.h / 5));
+			wings.lineTo(this.x - 7 - (this.h / 5), this.y - 40 - (this.h / 5));
+			wings.lineTo(this.x - 20 - (this.h / 5), this.y - 40 - (this.h / 5));
+			wings.lineTo(this.x - 15 - (this.h / 5), this.y - 10 - (this.h / 5));
+			wings.lineTo(this.x, this.y - 10 - (this.h / 5));
 
-			wings.moveTo(this.x + 5, this.y + 10);
-			wings.lineTo(this.x - 7, this.y + 40);
-			wings.lineTo(this.x - 20, this.y + 40);
-			wings.lineTo(this.x - 15, this.y + 10);
-			wings.lineTo(this.x, this.y + 10);
+			wings.moveTo(this.x + 5 + (this.h / 5), this.y + 10 + (this.h / 5));
+			wings.lineTo(this.x - 7 - (this.h / 5), this.y + 40 + (this.h / 5));
+			wings.lineTo(this.x - 20 - (this.h / 5), this.y + 40 + (this.h / 5));
+			wings.lineTo(this.x - 15 - (this.h / 5), this.y + 10 + (this.h / 5));
+			wings.lineTo(this.x, this.y + 10 + (this.h / 5));
 			crc.fillStyle = "blue";
 			crc.strokeStyle = "black";
 			crc.fill(wings);
@@ -44,9 +44,9 @@ namespace game {
 
 			let fire: Path2D = new Path2D();
 			fire.moveTo(this.x, this.y);
-			fire.moveTo(this.x - 23, this.y + 8);
-			fire.lineTo(this.x - 45, this.y);
-			fire.lineTo(this.x - 23, this.y - 8);
+			fire.moveTo(this.x - 23 - (this.h / 5), this.y + 8 + (this.h / 5));
+			fire.lineTo(this.x - 45 - (this.h / 5), this.y);
+			fire.lineTo(this.x - 23 - (this.h / 5), this.y - 8 - (this.h / 5));
 			crc.fillStyle = "red";
 			crc.strokeStyle = "black";
 			crc.fill(fire);
@@ -54,22 +54,22 @@ namespace game {
 
 			let fire2: Path2D = new Path2D();
 			fire2.moveTo(this.x, this.y);
-			fire2.moveTo(this.x - 23, this.y + 4);
-			fire2.lineTo(this.x - 38, this.y);
-			fire2.lineTo(this.x - 23, this.y - 4);
+			fire2.moveTo(this.x - 23 - (this.h / 5), this.y + 4 + (this.h / 5));
+			fire2.lineTo(this.x - 38 - (this.h / 5), this.y);
+			fire2.lineTo(this.x - 23 - (this.h / 5), this.y - 4 - (this.h / 5));
 			crc.fillStyle = "orange";
 			crc.fill(fire2);
 
 			let body: Path2D = new Path2D();
 			body.moveTo(this.x, this.y);
-			body.moveTo(this.x + 30, this.y);
-			body.lineTo(this.x, this.y - 15);
-			body.lineTo(this.x - 10, this.y - 15);
-			body.lineTo(this.x - 25, this.y - 10);
-			body.lineTo(this.x - 25, this.y + 10);
-			body.lineTo(this.x - 10, this.y + 15);
-			body.lineTo(this.x, this.y + 15);
-			body.lineTo(this.x + 30, this.y);
+			body.moveTo(this.x + 30 + (this.h / 5), this.y);
+			body.lineTo(this.x, this.y - 15 - (this.h / 5));
+			body.lineTo(this.x - 10 - (this.h / 5), this.y - 15 - (this.h / 5));
+			body.lineTo(this.x - 25 - (this.h / 5), this.y - 10 - (this.h / 5));
+			body.lineTo(this.x - 25 - (this.h / 5), this.y + 10 + (this.h / 5));
+			body.lineTo(this.x - 10 - (this.h / 5), this.y + 15 + (this.h / 5));
+			body.lineTo(this.x, this.y + 15 + (this.h / 5));
+			body.lineTo(this.x + 30 + (this.h / 5), this.y);
 			crc.fillStyle = "grey";
 			crc.strokeStyle = "black";
 			crc.fill(body);

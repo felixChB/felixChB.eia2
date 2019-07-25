@@ -1,5 +1,5 @@
 html, body {
-    margin: 3rem 0 0 0;
+    margin: 0 0 0 0;
     padding: 0;
     font-family: 'Righteous', cursive;
 }
@@ -15,19 +15,20 @@ header {
     width: 100%;
 }
 #game {
-    margin-left: 5rem;
-    /* text-align: center; */
+    margin: 5rem 5rem 5rem 5rem;
+}
+#boardbox{
+    position: fixed;
+    top: 10rem;
+    right: 5rem;
+    width: 15rem;
+    height: 25rem;
 }
 #scoreBoard{
     display: block;
     background-color: black;
     color: white;
-    position: fixed;
-    top: 0;
-    right: 10rem;
-    width: 15rem;
-    height: 25rem;
 }
 #scoreBoard div{
-    margin: 5px 5px 5px 5px;
+    margin: 7px 10px 7px 10px;
 }
