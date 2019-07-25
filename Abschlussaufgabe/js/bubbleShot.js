@@ -6,12 +6,12 @@ Datum: 23.07.2019
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 var game;
 (function (game) {
-    class Shot extends game.GameObj {
+    class BubbleShot extends game.GameObj {
         constructor() {
             super();
             this.dx = 20;
             this.dy = 0;
-            this.r = 10;
+            this.h = 2;
         }
         draw() {
             let shot = new Path2D();
@@ -39,6 +39,6 @@ var game;
             super.move();
         }
     }
-    game.Shot = Shot;
+    game.BubbleShot = BubbleShot;
 })(game || (game = {}));
-//# sourceMappingURL=shots.js.map
+//# sourceMappingURL=bubbleShot.js.map

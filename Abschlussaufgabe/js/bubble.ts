@@ -5,6 +5,7 @@ Datum: 23.07.2019
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
+//sind eigentlich wolken
 namespace game {
 	export class Bubble extends GameObj {
 		r: number;
@@ -17,9 +18,9 @@ namespace game {
 			this.y = Math.random() * canvas.height;
 			this.dx = Math.random() * (-20) - 15;
 			this.dy = 0;
-			this.r = (Math.random() * (60 - 5) + 30);
+			this.r = (Math.random() * (80 - 5) + 45);
 			this.t = Math.random() * 0.8;
-			this.color = `rgb(133, 133, 173, ${this.t})`;
+			this.color = `rgb(153, 153, 153, ${this.t})`;
 		}
 
 		draw(): void {
@@ -34,8 +35,8 @@ namespace game {
 
 		move(): void {
 			super.move();
-			if (this.x < -25) {
-				this.x = canvas.width + 25;
+			if (this.x < -100) {
+				this.x = canvas.width + 100;
 				this.y = Math.random() * canvas.height;
 				this.dx = Math.random() * (-20) - 15;
 			}

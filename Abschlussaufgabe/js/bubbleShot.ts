@@ -6,14 +6,14 @@ Datum: 23.07.2019
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
 
 namespace game {
-	export class Shot extends GameObj {
-		r: number;
+	export class BubbleShot extends GameObj {
+		h: number;
 
 		constructor() {
 			super();
 			this.dx = 20;
 			this.dy = 0;
-			this.r = 10;
+			this.h = 2;
 		}
 
 		draw(): void {

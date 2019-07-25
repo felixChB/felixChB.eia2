@@ -12,13 +12,15 @@ namespace game {
 		dx: number;
 		dy: number;
 		h: number;
+		life: number;
 
 		constructor() {
 			this.x = canvas.width / 2;
 			this.y = canvas.height / 2;
 			this.dx = 0;
 			this.dy = 0;
-			this.h = 30;
+			this.h = 20;
+			this.life = 3;
 		}
 
 		draw(): void {
@@ -40,15 +42,23 @@ namespace game {
 			crc.fill(wings);
 			crc.stroke(wings);
 
-			let fire: Path2D=new Path2D();
-			fire.moveTo(this.x,this.y);
-			fire.moveTo(this.x-23,this.y+8);
-			fire.lineTo(this.x-45,this.y);
-			fire.lineTo(this.x-23,this.y-8);
+			let fire: Path2D = new Path2D();
+			fire.moveTo(this.x, this.y);
+			fire.moveTo(this.x - 23, this.y + 8);
+			fire.lineTo(this.x - 45, this.y);
+			fire.lineTo(this.x - 23, this.y - 8);
 			crc.fillStyle = "red";
 			crc.strokeStyle = "black";
 			crc.fill(fire);
 			crc.stroke(fire);
+
+			let fire2: Path2D = new Path2D();
+			fire2.moveTo(this.x, this.y);
+			fire2.moveTo(this.x - 23, this.y + 4);
+			fire2.lineTo(this.x - 38, this.y);
+			fire2.lineTo(this.x - 23, this.y - 4);
+			crc.fillStyle = "orange";
+			crc.fill(fire2);
 
 			let body: Path2D = new Path2D();
 			body.moveTo(this.x, this.y);
@@ -82,7 +92,7 @@ namespace game {
 
 			let hitboxP: Path2D = new Path2D();
 			hitboxP.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
-			crc.strokeStyle = "white";
+			crc.strokeStyle = `rgb(255, 255, 255, 0.2)`;
 			crc.stroke(hitboxP);
 		}
 
@@ -95,14 +105,14 @@ namespace game {
 			this.x += this.dx;
 			this.y += this.dy;
 
-			if (this.x >= canvas.width) {
-				this.x = canvas.width;
-			} else if (this.x <= 0) {
-				this.x = 0;
-			} else if (this.y >= canvas.height) {
-				this.y = canvas.height;
-			} else if (this.y <= 0) {
-				this.y = 0;
+			if (this.x >= canvas.width - this.h) {
+				this.x = canvas.width - this.h;
+			} else if (this.x <= 0 + this.h) {
+				this.x = 0 + this.h;
+			} else if (this.y >= canvas.height - this.h) {
+				this.y = canvas.height - this.h;
+			} else if (this.y <= 0 + this.h) {
+				this.y = 0 + this.h;
 			}
 		}
 	}

@@ -24,15 +24,14 @@ var game;
         document.addEventListener("keydown", shoot);
         game.refresh();
         player = new game.PlayChar();
-        for (let i = 0; i < 11; i++) {
+        for (let i = 0; i < 15; i++) {
             let fish = new game.Fish();
             allObj.push(fish);
             fish.draw();
             console.log("fish");
         }
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 2; i++) {
             let crab = new game.Crab();
-            crab.color = "#f90a0c";
             allObj.push(crab);
             crab.draw();
             console.log("crab");
@@ -54,70 +53,31 @@ var game;
         }
         player.update();
         collide();
+        /* destroy(); */
         if (game.score == 170) {
             game.nameImput = prompt("You win! " + "Dein Score: " + game.score, "Your Player-Name");
             gameOver();
         }
         game.crc.fillStyle = "black";
-        game.crc.font = "30px Arial";
+        game.crc.font = "30px Righteous";
         game.crc.fillText("Score: " + game.score.toString(), 840, 40);
+        game.crc.fillStyle = "red";
+        game.crc.font = "30px Righteous";
+        game.crc.fillText("Life: " + player.life.toString(), 25, 40);
     }
     function drawBackground() {
-        drawWater();
-        drawGround();
-        for (let i = 0; i < 6; i++) {
-            let x = Math.random() * game.canvas.width;
-            let y = game.canvas.height - 70;
-            drawPlants(x, y);
-        }
-        for (let i = 0; i < 4; i++) {
-            let x = Math.random() * game.canvas.width;
-            let y = game.canvas.height - 60;
-            drawStone(x, y);
-        }
-    }
-    function drawWater() {
-        let water = new Path2D();
-        water.rect(0, 0, game.canvas.width, game.canvas.height);
-        game.crc.fillStyle = "#0965b1";
-        game.crc.strokeStyle = "#0965b1";
-        game.crc.fill(water);
-        game.crc.stroke(water);
-    }
-    function drawGround() {
-        let ground = new Path2D();
-        ground.rect(0, (game.canvas.height - 80), game.canvas.width, 80);
-        game.crc.fillStyle = "#f0d998";
-        game.crc.strokeStyle = "#f0d998";
-        game.crc.fill(ground);
-        game.crc.stroke(ground);
-    }
-    function drawPlants(_x, _y) {
-        game.crc.beginPath();
-        game.crc.moveTo(_x, _y);
-        game.crc.bezierCurveTo(_x + 50, _y - 40, _x - 10, _y - 60, _x + 20, _y - 120);
-        game.crc.moveTo(_x, _y);
-        game.crc.bezierCurveTo(_x + 60, _y - 20, _x + 35, _y - 45, _x + 55, _y - 55);
-        game.crc.moveTo(_x, _y);
-        game.crc.bezierCurveTo(_x - 20, _y - 50, _x + 5, _y - 70, _x - 35, _y - 75);
-        game.crc.moveTo(_x, _y);
-        game.crc.bezierCurveTo(_x - 20, _y - 70, _x + 70, _y - 130, _x, _y - 170);
-        game.crc.lineWidth = 8;
-        game.crc.strokeStyle = "#087332";
-        game.crc.stroke();
-        game.crc.closePath();
-    }
-    function drawStone(_x, _y) {
-        game.crc.beginPath();
-        game.crc.moveTo(_x, _y);
-        game.crc.bezierCurveTo(_x + 50, _y - 40, _x - 10, _y - 60, _x - 30, _y - 50);
-        game.crc.bezierCurveTo(_x - 50, _y - 30, _x - 70, _y - 50, _x - 40, _y);
-        game.crc.closePath();
-        game.crc.lineWidth = 8;
-        game.crc.strokeStyle = "#717171";
-        game.crc.fillStyle = "#717171";
-        game.crc.fill();
-        game.crc.stroke();
+        let earth = new Path2D();
+        earth.rect(0, 0, game.canvas.width, game.canvas.height);
+        game.crc.fillStyle = "brown";
+        game.crc.strokeStyle = "#brown";
+        game.crc.fill(earth);
+        game.crc.stroke(earth);
+        let fluss = new Path2D();
+        fluss.moveTo((-50), 300);
+        fluss.bezierCurveTo(300, 220, 600, 450, 1050, 300);
+        game.crc.lineWidth = 200;
+        game.crc.strokeStyle = "blue";
+        game.crc.stroke(fluss);
     }
     function moving(_e) {
         let pressedKey = _e.which;
@@ -159,12 +119,32 @@ var game;
             console.log("shoot");
             let x = player.x;
             let y = player.y;
-            let shot = new game.Shot();
+            let shot = new game.BubbleShot();
             shot.x = x + 10;
             shot.y = y;
             allObj.push(shot);
         }
     }
+    /* function destroy(): void {
+        for (let i: number = 0; i < allObj.length; i++) {
+            if (allObj[i] instanceof Fish) {
+                let thisFish: Fish = allObj[i];
+                for (let j: number = 0; j < allObj.length; i++) {
+                    if (allObj[j] instanceof BubbleShot) {
+                        let abstandX = thisFish.x - allObj[j].x;
+                        let abstandY = thisFish.y - allObj[j].y;
+                        let abstand: number = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
+                        let hitboxAbstand: number = abstand - thisFish.h - allObj[j].h;
+                        if (hitboxAbstand < 0) {
+                            allObj.splice(j, 1);
+                            score += 10;
+                            console.log("destroy");
+                        }
+                    }
+                }
+            }
+        }
+    } */
     function collide() {
         for (let i = 0; i < allObj.length; i++) {
             let o = allObj[i];
@@ -173,15 +153,36 @@ var game;
             let abstand = Math.sqrt(Math.pow(abstandX, 2) + Math.pow(abstandY, 2));
             let hitboxAbstand = abstand - o.h - player.h;
             if (hitboxAbstand < 0) {
-                if (player.h > o.h) {
+                if (o instanceof game.Crab) {
+                    player.life++;
+                    player.h += 5;
+                    game.score++;
+                    console.log(player.life);
+                    allObj.splice(i, 1);
+                    if (player.life <= 5) {
+                        let crab = new game.Crab();
+                        allObj.push(crab);
+                    }
+                }
+                if (o instanceof game.Fish) {
+                    player.life--;
+                    player.h -= 5;
+                    allObj.splice(i, 1);
+                    let fish = new game.Fish();
+                    allObj.push(fish);
+                    if (player.life == 0) {
+                        game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
+                        gameOver();
+                    }
+                }
+                /* if (player.h > o.h) {
                     allObj.splice(i, 1);
                     player.h += 4;
-                    game.score += 10;
-                }
-                else {
-                    game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
+                    score += 10;
+                } else {
+                    nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
                     gameOver();
-                }
+                } */
             }
         }
     }

@@ -12,7 +12,8 @@ var game;
             this.y = game.canvas.height / 2;
             this.dx = 0;
             this.dy = 0;
-            this.h = 30;
+            this.h = 20;
+            this.life = 3;
         }
         draw() {
             let wings = new Path2D();
@@ -39,6 +40,13 @@ var game;
             game.crc.strokeStyle = "black";
             game.crc.fill(fire);
             game.crc.stroke(fire);
+            let fire2 = new Path2D();
+            fire2.moveTo(this.x, this.y);
+            fire2.moveTo(this.x - 23, this.y + 4);
+            fire2.lineTo(this.x - 38, this.y);
+            fire2.lineTo(this.x - 23, this.y - 4);
+            game.crc.fillStyle = "orange";
+            game.crc.fill(fire2);
             let body = new Path2D();
             body.moveTo(this.x, this.y);
             body.moveTo(this.x + 30, this.y);
@@ -69,7 +77,7 @@ var game;
             game.crc.stroke(window);
             let hitboxP = new Path2D();
             hitboxP.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
-            game.crc.strokeStyle = "white";
+            game.crc.strokeStyle = `rgb(255, 255, 255, 0.2)`;
             game.crc.stroke(hitboxP);
         }
         update() {
@@ -79,17 +87,17 @@ var game;
         move() {
             this.x += this.dx;
             this.y += this.dy;
-            if (this.x >= game.canvas.width) {
-                this.x = game.canvas.width;
+            if (this.x >= game.canvas.width - this.h) {
+                this.x = game.canvas.width - this.h;
             }
-            else if (this.x <= 0) {
-                this.x = 0;
+            else if (this.x <= 0 + this.h) {
+                this.x = 0 + this.h;
             }
-            else if (this.y >= game.canvas.height) {
-                this.y = game.canvas.height;
+            else if (this.y >= game.canvas.height - this.h) {
+                this.y = game.canvas.height - this.h;
             }
-            else if (this.y <= 0) {
-                this.y = 0;
+            else if (this.y <= 0 + this.h) {
+                this.y = 0 + this.h;
             }
         }
     }

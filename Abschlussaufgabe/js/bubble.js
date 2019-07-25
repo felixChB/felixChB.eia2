@@ -4,6 +4,7 @@ Matrikel: 260550
 Datum: 23.07.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+//sind eigentlich wolken
 var game;
 (function (game) {
     class Bubble extends game.GameObj {
@@ -13,9 +14,9 @@ var game;
             this.y = Math.random() * game.canvas.height;
             this.dx = Math.random() * (-20) - 15;
             this.dy = 0;
-            this.r = (Math.random() * (60 - 5) + 30);
+            this.r = (Math.random() * (80 - 5) + 45);
             this.t = Math.random() * 0.8;
-            this.color = `rgb(133, 133, 173, ${this.t})`;
+            this.color = `rgb(153, 153, 153, ${this.t})`;
         }
         draw() {
             let bubble = new Path2D();
@@ -28,8 +29,8 @@ var game;
         }
         move() {
             super.move();
-            if (this.x < -25) {
-                this.x = game.canvas.width + 25;
+            if (this.x < -100) {
+                this.x = game.canvas.width + 100;
                 this.y = Math.random() * game.canvas.height;
                 this.dx = Math.random() * (-20) - 15;
             }

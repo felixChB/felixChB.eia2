@@ -4,70 +4,96 @@ Matrikel: 260550
 Datum: 23.07.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+//eigentlich ein raumschiff
 var game;
 (function (game) {
     class Fish extends game.GameObj {
         constructor() {
             super();
-            this.x = (Math.floor(Math.random() * 900) + 600);
-            this.y = Math.random() * game.canvas.height - 100;
-            this.dx = Math.random() * 5;
-            this.dy = Math.random() * 5 - 2;
-            this.h = 40;
+            this.x = game.canvas.width + 100;
+            this.y = (Math.random() * (game.canvas.height - 50) + 50);
+            this.dx = (Math.random() * 10) - 15;
+            this.dy = Math.random() * 4 - 2;
+            this.h = 25;
         }
         draw() {
+            let guns = new Path2D();
+            guns.moveTo(this.x + 10, this.y + 25);
+            guns.lineTo(this.x - 25, this.y + 25);
+            guns.lineTo(this.x - 25, this.y + 15);
+            guns.lineTo(this.x + 10, this.y + 15);
+            guns.lineTo(this.x + 10, this.y + 25);
+            guns.moveTo(this.x + 10, this.y - 25);
+            guns.lineTo(this.x - 25, this.y - 25);
+            guns.lineTo(this.x - 25, this.y - 15);
+            guns.lineTo(this.x + 10, this.y - 15);
+            guns.lineTo(this.x + 10, this.y - 25);
+            game.crc.fillStyle = "darkred";
+            game.crc.strokeStyle = "black";
+            game.crc.fill(guns);
+            game.crc.stroke(guns);
+            let fire = new Path2D();
+            fire.moveTo(this.x, this.y);
+            fire.moveTo(this.x + 10, this.y + 12);
+            fire.lineTo(this.x + 55, this.y);
+            fire.lineTo(this.x + 10, this.y - 12);
+            game.crc.fillStyle = "lightblue";
+            game.crc.strokeStyle = "black";
+            game.crc.fill(fire);
+            game.crc.stroke(fire);
+            let fire2 = new Path2D();
+            fire2.moveTo(this.x, this.y);
+            fire2.moveTo(this.x + 10, this.y + 8);
+            fire2.lineTo(this.x + 45, this.y);
+            fire2.lineTo(this.x + 10, this.y - 8);
+            game.crc.fillStyle = "cyan";
+            game.crc.fill(fire2);
             let body = new Path2D();
-            body.ellipse(this.x, this.y, 20, 40, 30, 0, 2 * Math.PI);
-            game.crc.lineWidth = 1;
-            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
+            body.moveTo(this.x, this.y);
+            body.moveTo(this.x - 40, this.y);
+            body.quadraticCurveTo(this.x - 10, this.y + 5, this.x + 10, this.y + 30);
+            body.lineTo(this.x + 20, this.y + 30);
+            body.lineTo(this.x + 20, this.y - 30);
+            body.lineTo(this.x + 10, this.y - 30);
+            body.quadraticCurveTo(this.x - 10, this.y - 5, this.x - 40, this.y);
+            game.crc.fillStyle = "darkgrey";
+            game.crc.strokeStyle = "black";
             game.crc.fill(body);
             game.crc.stroke(body);
-            let flosse = new Path2D();
-            game.crc.beginPath();
-            flosse.moveTo(this.x - 35, this.y - 7);
-            flosse.lineTo(this.x - 80, this.y - 30);
-            flosse.lineTo(this.x - 85, this.y + 20);
-            game.crc.closePath();
-            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.fill(flosse);
-            game.crc.stroke(flosse);
-            let fishEye = new Path2D();
-            fishEye.arc(this.x + 28, this.y, 5, 0, 2 * Math.PI);
-            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.fill(fishEye);
-            game.crc.stroke(fishEye);
-            let fishPupille = new Path2D();
-            fishPupille.arc(this.x + 30, this.y, 3, 0, 2 * Math.PI);
-            game.crc.fillStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.strokeStyle = `rgba(${(Math.random() * 255)}, ${(Math.random() * 255)}, ${(Math.random() * 255)})`;
-            game.crc.fill(fishPupille);
-            game.crc.stroke(fishPupille);
-            let fishMouth = new Path2D();
-            fishMouth.moveTo(this.x + 38, this.y + 12);
-            fishMouth.lineTo(this.x + 36, this.y + 8);
-            fishMouth.lineTo(this.x + 34, this.y + 12);
-            fishMouth.lineTo(this.x + 32, this.y + 8);
-            fishMouth.lineTo(this.x + 30, this.y + 12);
-            fishMouth.lineTo(this.x + 28, this.y + 8);
-            game.crc.stroke(fishMouth);
+            let window = new Path2D();
+            window.moveTo(this.x, this.y);
+            window.moveTo(this.x + 5, this.y + 12);
+            window.lineTo(this.x - 25, this.y);
+            window.lineTo(this.x + 5, this.y - 12);
+            window.lineTo(this.x + 5, this.y + 12);
+            game.crc.fillStyle = "lightgrey";
+            game.crc.strokeStyle = "black";
+            game.crc.fill(window);
+            game.crc.stroke(window);
             let hitboxF = new Path2D();
             hitboxF.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
-            game.crc.strokeStyle = "white";
+            game.crc.strokeStyle = `rgb(255, 255, 255, 0.2)`;
             game.crc.stroke(hitboxF);
         }
         move() {
             super.move();
-            if (this.x > (game.crc.canvas.width + 80)) {
-                this.x = -120;
+            if (this.x < (-100)) {
+                this.x = game.canvas.width + 100;
+                this.y = (Math.random() * (game.canvas.height - 50) + 50);
+                this.dx = (Math.random() * 10) - 15;
+                this.dy = Math.random() * 4 - 2;
             }
             if (this.y > (game.crc.canvas.height + 50)) {
-                this.y = -50;
+                this.x = game.canvas.width + 100;
+                this.y = (Math.random() * (game.canvas.height - 50) + 50);
+                this.dx = (Math.random() * 10) - 15;
+                this.dy = Math.random() * 4 - 2;
             }
             if (this.y < (-50)) {
-                this.y = (game.crc.canvas.height + 50);
+                this.x = game.canvas.width + 100;
+                this.y = (Math.random() * (game.canvas.height - 50) + 50);
+                this.dx = (Math.random() * 10) - 15;
+                this.dy = Math.random() * 4 - 2;
             }
         }
     }
