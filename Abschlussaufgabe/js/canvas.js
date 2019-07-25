@@ -10,6 +10,7 @@ var game;
     game.serverAddress = "https://eia2-endgame.herokuapp.com/";
     game.score = 0;
     let allObj = [];
+    let shots = [];
     let fps = 30;
     let imageData;
     let player;
@@ -51,13 +52,12 @@ var game;
         for (let i = 0; i < allObj.length; i++) {
             allObj[i].update();
         }
+        for (let i = 0; i < shots.length; i++) {
+            shots[i].update();
+        }
         player.update();
         collide();
         /* destroy(); */
-        /* if (score == 170) {
-            nameImput = prompt("You win! " + "Dein Score: " + score, "Your Player-Name");
-            gameOver();
-        } */
         game.crc.fillStyle = "black";
         game.crc.font = "30px Righteous";
         game.crc.fillText("Score: " + game.score.toString(), 840, 40);
@@ -122,10 +122,23 @@ var game;
             let shot = new game.BubbleShot();
             shot.x = x + 10;
             shot.y = y;
-            allObj.push(shot);
+            shots.push(shot);
         }
     }
     /* function destroy(): void {
+
+        for (let i: number = 0; i < allObj.length; i++) {
+            if (allObj[i] instanceof Fish) {
+                let thisFish: Fish = allObj[i];
+                for (let j: number = 0; j < shots.length; i++) {
+                    if (crc.isPointInPath(thisFish.hitbox, allObj[j].h, allObj[j].y)) {
+                        allObj.splice(i, 1);
+                        shots.splice(j, 1);
+                    }
+                }
+            }
+        }
+
         for (let i: number = 0; i < allObj.length; i++) {
             if (allObj[i] instanceof Fish) {
                 let thisFish: Fish = allObj[i];
@@ -193,7 +206,7 @@ var game;
                     let fish = new game.Fish();
                     allObj.push(fish);
                     if (player.life == 0) {
-                        game.nameImput = prompt("Game Over!" + "Dein Score: " + game.score, "Your Player-Name");
+                        game.nameImput = prompt("Game Over! " + "Dein Score: " + game.score, "Your Player-Name");
                         gameOver();
                     }
                 }

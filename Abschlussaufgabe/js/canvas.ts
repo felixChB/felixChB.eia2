@@ -13,6 +13,7 @@ namespace game {
 	export let nameImput: string;
 	export let score: number = 0;
 	let allObj: GameObj[] = [];
+	let shots: BubbleShot[] = [];
 	let fps: number = 30;
 	let imageData: ImageData;
 	let player: PlayChar;
@@ -66,13 +67,13 @@ namespace game {
 			allObj[i].update();
 		}
 
+		for (let i: number = 0; i < shots.length; i++) {
+			shots[i].update();
+		}
+
 		player.update();
 		collide();
 		/* destroy(); */
-		/* if (score == 170) {
-			nameImput = prompt("You win! " + "Dein Score: " + score, "Your Player-Name");
-			gameOver();
-		} */
 
 		crc.fillStyle = "black";
 		crc.font = "30px Righteous";
@@ -144,11 +145,24 @@ namespace game {
 			let shot: BubbleShot = new BubbleShot();
 			shot.x = x + 10;
 			shot.y = y;
-			allObj.push(shot);
+			shots.push(shot);
 		}
 	}
 
 	/* function destroy(): void {
+
+		for (let i: number = 0; i < allObj.length; i++) {
+			if (allObj[i] instanceof Fish) {
+				let thisFish: Fish = allObj[i];
+				for (let j: number = 0; j < shots.length; i++) {
+					if (crc.isPointInPath(thisFish.hitbox, allObj[j].h, allObj[j].y)) {
+						allObj.splice(i, 1);
+						shots.splice(j, 1);
+					}
+				}
+			}
+		}
+
 		for (let i: number = 0; i < allObj.length; i++) {
 			if (allObj[i] instanceof Fish) {
 				let thisFish: Fish = allObj[i];
@@ -223,7 +237,7 @@ namespace game {
 					let fish: Fish = new Fish();
 					allObj.push(fish);
 					if (player.life == 0) {
-						nameImput = prompt("Game Over!" + "Dein Score: " + score, "Your Player-Name");
+						nameImput = prompt("Game Over! " + "Dein Score: " + score, "Your Player-Name");
 						gameOver();
 					}
 				}

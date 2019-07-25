@@ -70,10 +70,10 @@ var game;
             game.crc.strokeStyle = "black";
             game.crc.fill(window);
             game.crc.stroke(window);
-            let hitboxF = new Path2D();
-            hitboxF.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+            let hitbox = new Path2D();
+            hitbox.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
             game.crc.strokeStyle = `rgb(255, 255, 255, 0.2)`;
-            game.crc.stroke(hitboxF);
+            game.crc.stroke(hitbox);
         }
         move() {
             super.move();

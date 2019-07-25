@@ -10,6 +10,8 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
 namespace game {
 	export class Fish extends GameObj {
 
+		hitbox: Path2D;
+
 		constructor() {
 			super();
 			this.x = canvas.width + 100;
@@ -80,10 +82,10 @@ namespace game {
 			crc.stroke(window);
 
 
-			let hitboxF: Path2D = new Path2D();
-			hitboxF.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
+			let hitbox: Path2D = new Path2D();
+			hitbox.arc(this.x, this.y, this.h, 0, 2 * Math.PI);
 			crc.strokeStyle = `rgb(255, 255, 255, 0.2)`;
-			crc.stroke(hitboxF);
+			crc.stroke(hitbox);
 		}
 
 		move(): void {

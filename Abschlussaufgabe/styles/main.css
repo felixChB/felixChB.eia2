@@ -19,7 +19,7 @@ header {
 }
 #boardbox{
     position: fixed;
-    top: 10rem;
+    top: 5rem;
     right: 5rem;
     width: 15rem;
     height: 25rem;
@@ -28,7 +28,8 @@ header {
     display: block;
     background-color: black;
     color: white;
+    
 }
 #scoreBoard div{
-    margin: 7px 10px 7px 10px;
+    margin: 20px 20px 20px 20px;
 }

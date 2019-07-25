@@ -11,7 +11,7 @@ var game;
             super();
             this.dx = 20;
             this.dy = 0;
-            this.h = 2;
+            this.h = this.x + 10;
         }
         draw() {
             let shot = new Path2D();

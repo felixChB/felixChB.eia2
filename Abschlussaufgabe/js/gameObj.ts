@@ -12,6 +12,7 @@ namespace game {
 		dx: number;
 		dy: number;
 		h: number;
+		hitbox: Path2D;
 
 		constructor() {
 
