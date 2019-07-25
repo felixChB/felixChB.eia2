@@ -41,12 +41,12 @@ namespace game {
 			fish.draw();
 			console.log("fish");
 		}
-		for (let i: number = 0; i < 2; i++) {
-			let crab: Crab = new Crab();
-			allObj.push(crab);
-			crab.draw();
-			console.log("crab");
-		}
+
+		let crab: Crab = new Crab();
+		allObj.push(crab);
+		crab.draw();
+		console.log("crab");
+		
 		for (let i: number = 0; i < 50; i++) {
 			let bubble: Bubble = new Bubble();
 			allObj.push(bubble);
@@ -200,6 +200,7 @@ namespace game {
 
 						allObj.splice(i, 1);
 						shots.splice(j, 1);
+						score += 50;
 						let fish: Fish = new Fish();
 						allObj.push(fish);
 						console.log("destroy");

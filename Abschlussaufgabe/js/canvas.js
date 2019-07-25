@@ -31,12 +31,10 @@ var game;
             fish.draw();
             console.log("fish");
         }
-        for (let i = 0; i < 2; i++) {
-            let crab = new game.Crab();
-            allObj.push(crab);
-            crab.draw();
-            console.log("crab");
-        }
+        let crab = new game.Crab();
+        allObj.push(crab);
+        crab.draw();
+        console.log("crab");
         for (let i = 0; i < 50; i++) {
             let bubble = new game.Bubble();
             allObj.push(bubble);
@@ -169,6 +167,7 @@ var game;
                         game.crc.stroke(exp3);
                         allObj.splice(i, 1);
                         shots.splice(j, 1);
+                        game.score += 50;
                         let fish = new game.Fish();
                         allObj.push(fish);
                         console.log("destroy");
