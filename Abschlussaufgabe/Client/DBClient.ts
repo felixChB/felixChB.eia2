@@ -49,7 +49,7 @@ namespace game {
                 let newPlayer = document.createElement("div");
                 document.getElementById("scoreBoard").appendChild(newPlayer);
                 newPlayer.setAttribute("id", i.toString());
-                newPlayer.innerHTML = `${i}+"Place: "${allPlayersArray[i].name} : ${allPlayersArray[i].score}`;
+                newPlayer.innerHTML = `${i + 1}.Place: ${allPlayersArray[i].name} : ${allPlayersArray[i].score}`;
             }
 
             /* let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];

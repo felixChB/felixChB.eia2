@@ -45,6 +45,9 @@ var game;
         }
         update();
     }
+    /* function startGame(): void {
+
+    } */
     function update() {
         timeout = window.setTimeout(update, 1000 / fps);
         game.crc.clearRect(0, 0, game.canvas.width, game.canvas.height);
@@ -58,9 +61,10 @@ var game;
         player.update();
         collide();
         /* destroy(); */
+        game.score++;
         game.crc.fillStyle = "black";
         game.crc.font = "30px Righteous";
-        game.crc.fillText("Score: " + game.score.toString(), 840, 40);
+        game.crc.fillText("Score: " + game.score.toString(), 820, 40);
         game.crc.fillStyle = "red";
         game.crc.font = "30px Righteous";
         game.crc.fillText("Life: " + player.life.toString(), 25, 40);
@@ -69,7 +73,7 @@ var game;
         let earth = new Path2D();
         earth.rect(0, 0, game.canvas.width, game.canvas.height);
         game.crc.fillStyle = "brown";
-        game.crc.strokeStyle = "#brown";
+        game.crc.strokeStyle = "brown";
         game.crc.fill(earth);
         game.crc.stroke(earth);
         let fluss = new Path2D();
@@ -78,6 +82,12 @@ var game;
         game.crc.lineWidth = 200;
         game.crc.strokeStyle = "blue";
         game.crc.stroke(fluss);
+        let earth2 = new Path2D();
+        earth2.moveTo((-50), 100);
+        earth2.bezierCurveTo(200, 20, 600, 250, 1050, 100);
+        game.crc.lineWidth = 30;
+        game.crc.strokeStyle = "darkgrey";
+        game.crc.stroke(earth2);
     }
     function moving(_e) {
         let pressedKey = _e.which;
@@ -169,7 +179,7 @@ var game;
                 if (o instanceof game.Crab) {
                     player.life++;
                     player.h += 5;
-                    game.score += 10;
+                    game.score += 20;
                     console.log(player.life);
                     allObj.splice(i, 1);
                     if (player.life <= 5) {
@@ -202,7 +212,7 @@ var game;
                     game.crc.fill(exp3);
                     game.crc.stroke(exp3);
                     allObj.splice(i, 1);
-                    game.score += 20;
+                    game.score += 100;
                     let fish = new game.Fish();
                     allObj.push(fish);
                     if (player.life == 0) {

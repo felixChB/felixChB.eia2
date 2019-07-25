@@ -58,6 +58,10 @@ namespace game {
 
 	}
 
+	/* function startGame(): void {
+
+	} */
+
 	function update(): void {
 		timeout = window.setTimeout(update, 1000 / fps);
 		crc.clearRect(0, 0, canvas.width, canvas.height);
@@ -75,9 +79,11 @@ namespace game {
 		collide();
 		/* destroy(); */
 
+		score++;
+
 		crc.fillStyle = "black";
 		crc.font = "30px Righteous";
-		crc.fillText("Score: " + score.toString(), 840, 40);
+		crc.fillText("Score: " + score.toString(), 820, 40);
 		crc.fillStyle = "red";
 		crc.font = "30px Righteous";
 		crc.fillText("Life: " + player.life.toString(), 25, 40);
@@ -88,7 +94,7 @@ namespace game {
 		let earth: Path2D = new Path2D();
 		earth.rect(0, 0, canvas.width, canvas.height);
 		crc.fillStyle = "brown";
-		crc.strokeStyle = "#brown";
+		crc.strokeStyle = "brown";
 		crc.fill(earth);
 		crc.stroke(earth);
 
@@ -98,6 +104,13 @@ namespace game {
 		crc.lineWidth = 200;
 		crc.strokeStyle = "blue";
 		crc.stroke(fluss);
+
+		let earth2: Path2D = new Path2D();
+		earth2.moveTo((-50), 100);
+		earth2.bezierCurveTo(200, 20, 600, 250, 1050, 100);
+		crc.lineWidth = 30;
+		crc.strokeStyle = "darkgrey";
+		crc.stroke(earth2);
 	}
 
 	function moving(_e: KeyboardEvent): void {
@@ -196,7 +209,7 @@ namespace game {
 				if (o instanceof Crab) {
 					player.life++;
 					player.h += 5;
-					score += 10;
+					score += 20;
 					console.log(player.life);
 					allObj.splice(i, 1);
 
@@ -232,7 +245,7 @@ namespace game {
 					crc.stroke(exp3);
 
 					allObj.splice(i, 1);
-					score += 20;
+					score += 100;
 
 					let fish: Fish = new Fish();
 					allObj.push(fish);
