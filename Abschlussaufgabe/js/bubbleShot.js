@@ -4,6 +4,7 @@ Matrikel: 260550
 Datum: 23.07.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+//eigentlich Schüsse des Spielers(die meisten Klassennamen wurden nicht umbenannt obwohl sie nicht mehr zum Kontext des Spiels passen, da so probleme entstanden sind)
 var game;
 (function (game) {
     class BubbleShot extends game.GameObj {

@@ -4,7 +4,7 @@ Matrikel: 260550
 Datum: 23.07.2019
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
-//eigentlich ein raumschiff
+//eigentlich ein Gegnerraumschiff
 var game;
 (function (game) {
     class Fish extends game.GameObj {

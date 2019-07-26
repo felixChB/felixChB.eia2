@@ -25,7 +25,7 @@ var game;
         document.addEventListener("keydown", shoot);
         game.refresh();
         player = new game.PlayChar();
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 30; i++) {
             let fish = new game.Fish();
             allObj.push(fish);
             fish.draw();
@@ -208,7 +208,7 @@ var game;
                     game.score += 20;
                     console.log(player.life);
                     allObj.splice(i, 1);
-                    if (player.life <= 5) {
+                    if (player.life <= 4) {
                         let crab = new game.Crab();
                         allObj.push(crab);
                     }

@@ -33,9 +33,9 @@ namespace game {
 
 		refresh();
 
-		player = new PlayChar()
+		player = new PlayChar();
 
-		for (let i: number = 0; i < 15; i++) {
+		for (let i: number = 0; i < 30; i++) {
 			let fish: Fish = new Fish();
 			allObj.push(fish);
 			fish.draw();
@@ -246,7 +246,7 @@ namespace game {
 					console.log(player.life);
 					allObj.splice(i, 1);
 
-					if (player.life <= 5) {
+					if (player.life <= 4) {
 						let crab: Crab = new Crab();
 						allObj.push(crab);
 					}

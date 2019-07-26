@@ -109,7 +109,8 @@ namespace game {
 				this.x = canvas.width - this.h;
 			} else if (this.x <= 0 + this.h) {
 				this.x = 0 + this.h;
-			} else if (this.y >= canvas.height - this.h) {
+			}
+			 if (this.y >= canvas.height - this.h) {
 				this.y = canvas.height - this.h;
 			} else if (this.y <= 0 + this.h) {
 				this.y = 0 + this.h;

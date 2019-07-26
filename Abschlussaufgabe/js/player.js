@@ -93,7 +93,7 @@ var game;
             else if (this.x <= 0 + this.h) {
                 this.x = 0 + this.h;
             }
-            else if (this.y >= game.canvas.height - this.h) {
+            if (this.y >= game.canvas.height - this.h) {
                 this.y = game.canvas.height - this.h;
             }
             else if (this.y <= 0 + this.h) {
