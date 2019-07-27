@@ -53,3 +53,6 @@ canvas {
     border: 5px solid yellow;
     border-radius: 7px;
 }
+audio{
+    display: none;
+}

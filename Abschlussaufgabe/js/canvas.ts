@@ -20,6 +20,11 @@ namespace game {
 	let timeout: number;
 
 	function init(): void {
+
+		alert(`Spielanleitung
+Willkommen im Endgame. 
+Du bist ein einzelnes Raumschiff, dass sich einer überzahl an Gegnern entgegenstellt. Bewege dich mit „w,a,s,d“, um den Gegnern auszuweichen und schieße dich mit „leertaste“ durch die unendlichen Massen. Du beginnst mit 3 Leben und erhältst für jedes eingesammelte Herz ein Neues dazu. Aber gib acht. Sammelst du mit 4 Leben ein weiteres Herz ein spawnt kein neues Herz und du musst dich mit 5 Leben zufriedengeben. Trifft dich ein Gegner verlierst du 1 Leben und 50 Punkte. Schaffst du es jedoch mit deinen Schüssen einen Gegner zu treffen explodiert dieser und beschert dir 50 Punkte. Fallen deine Leben auf 0 ist das Spiel vorbei und du kannst dich mit deinem Namen (natürlich musst du nicht deinen echten Namen nehmen) in die Spielerliste eintragen. Ist deine erreichte Punktzahl hoch genug wirst du deinen Namen im Scoreboard wiedersehen und gehörst nun zu den Top 10. Also los! Möge der höchste Score gewinnen!`);
+
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
 
@@ -46,7 +51,7 @@ namespace game {
 		allObj.push(crab);
 		crab.draw();
 		console.log("crab");
-		
+
 		for (let i: number = 0; i < 50; i++) {
 			let bubble: Bubble = new Bubble();
 			allObj.push(bubble);
